@@ -12,6 +12,15 @@ header {
   text-align: center;
 }
 
+header h1 {
+  color: #5e2b7a;   /* roxo escuro */
+  font-weight: 700;
+}
+
+header p {
+  color: #000000;   /* preto */
+  font-weight: 500;
+}
 nav {
   display: flex;
   justify-content: center;
