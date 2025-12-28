@@ -2,11 +2,15 @@
   {
     "nome": "Vestido luna",
     "preco": "R$ 99,90",
-    "imagem": "https://via.placeholder.com/300"
+    "imagem": "imagem/vestido1.jpg",
+    "cores" : "Lilas, Branco",
+    "tamanho": "P, M, G"
   },
   {
-    "nome": "calca Elegante",
+    "nome": "Conjunto iris",
     "preco": "R$ 79,90",
-    "imagem": "https://via.placeholder.com/300"
+    "imagem": "imagem/conjunto1.png",
+    "cores" : "Roxo"
+    "tamanhos" : "M, G"
   }
 ]
