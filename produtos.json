@@ -9,21 +9,21 @@
   {
     "nome": "Conjunto Íris",
     "preco": "R$ 79,90",
-    "imagem": "imagens/conjunto-iris.jpg"
+    "imagem": "imagens/conjunto-iris.jpg",
     "cores": "Roxo",
     "tamanhos": "M, G"
   },
   {
-    "nome": "Vestido Alfaiataria",
+    "nome": "Conjunto Alfaiataria",
     "preco": "R$ 79,90",
-    "imagem": "https://drive.google.com/uc?export=view&id=1jlvPsS9zi8MUU6mkhDEFCIRSq43a9r3k",
+    "imagem": "imagens/conjunto-alfaiataria.jpg",
     "cores": "Lilás, Branco",
     "tamanhos": "P, M, G"
   },
   {
     "nome": "Vestido Alfaiataria",
     "preco": "R$ 79,90",
-    "imagem": "https://drive.google.com/uc?export=view&id=1jlvPsS9zi8MUU6mkhDEFCIRSq43a9r3k",
+    "imagem": "imagens/vestido-alfaiataria.jpg",
     "cores": "Lilás, Branco",
     "tamanhos": "P, M, G"
   }
