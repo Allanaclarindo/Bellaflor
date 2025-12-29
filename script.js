@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const produtos = [
     { nome: "Vestido Luna", preco: "R$ 99,90", cores: "Lilás, Branco", tamanhos: "P, M, G", imagem: "imagens/vestido-luna.jpg" },
     { nome: "Conjunto Íris", preco: "R$ 79,90", cores: "Rosa, Preto", tamanhos: "P, M, G", imagem: "imagens/conjunto-iris.jpg" },
-    { nome: "Vestido Sol", preco: "R$ 89,90", cores: "Amarelo, Branco", tamanhos: "P, M, G", imagem: "imagens/vestido-sol.jpg" },
+    { nome: "Vestido Alfaiataria", preco: "R$ 89,90", cores: "Amarelo, Branco", tamanhos: "P, M, G", imagem: "imagens/vestido-sol.jpg" },
     { nome: "Saia Lua", preco: "R$ 69,90", cores: "Preto, Vermelho", tamanhos: "P, M, G", imagem: "imagens/saia-lua.jpg" }
   ];
 
