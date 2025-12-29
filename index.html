@@ -85,7 +85,19 @@
     <h3>🛒 Meu Carrinho</h3>
 
     <div id="lista-carrinho"></div>
+<hr>
 
+<label>
+  <input type="radio" name="entrega" value="Retirada na loja" checked>
+  Retirada na loja
+</label><br>
+
+<label>
+  <input type="radio" name="entrega" value="Entrega">
+  Entrega
+</label>
+
+<p><strong>Total:</strong> R$ <span id="total">0.00</span></p>
     <button onclick="finalizarWhatsApp()">Finalizar no WhatsApp</button>
     <button onclick="fecharCarrinho()">Fechar</button>
   </div>
