@@ -1,14 +1,11 @@
 let carrinho = [];
 let produtoSelecionado = null;
 
-// CARREGA PRODUTOS
+/* ===============================
+   CARREGAR PRODUTOS
+================================ */
 fetch('produtos.json')
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Erro ao carregar produtos.json');
-    }
-    return response.json();
-  })
+  .then(response => response.json())
   .then(produtos => {
     const lista = document.getElementById('lista-produtos');
     lista.innerHTML = '';
@@ -24,72 +21,95 @@ fetch('produtos.json')
         </div>
       `;
     });
-  })
-  .catch(error => {
-    console.error(error);
-    document.getElementById('lista-produtos').innerHTML =
-      '<p>Erro ao carregar o catálogo.</p>';
   });
 
-// ABRIR MODAL
+/* ===============================
+   MODAL DO PRODUTO
+================================ */
 function abrirModal(produto) {
   produtoSelecionado = produto;
 
   document.getElementById("modal").style.display = "flex";
   document.getElementById("modal-nome").innerText = produto.nome;
 
-  const cores = produto.cores.split(",");
-  const tamanhos = produto.tamanhos.split(",");
-
   document.getElementById("cor").innerHTML =
-    cores.map(c => `<option>${c.trim()}</option>`).join("");
+    produto.cores.split(",").map(c => `<option>${c.trim()}</option>`).join("");
 
   document.getElementById("tamanho").innerHTML =
-    tamanhos.map(t => `<option>${t.trim()}</option>`).join("");
+    produto.tamanhos.split(",").map(t => `<option>${t.trim()}</option>`).join("");
 }
 
-// FECHAR MODAL
 function fecharModal() {
   document.getElementById("modal").style.display = "none";
 }
 
-// ADICIONAR AO CARRINHO
+/* ===============================
+   CARRINHO
+================================ */
 function adicionarCarrinho() {
-  const cor = document.getElementById("cor").value;
-  const tamanho = document.getElementById("tamanho").value;
-
   carrinho.push({
     nome: produtoSelecionado.nome,
     preco: produtoSelecionado.preco,
-    cor,
-    tamanho
+    cor: document.getElementById("cor").value,
+    tamanho: document.getElementById("tamanho").value
   });
 
   document.getElementById("contador-carrinho").innerText = carrinho.length;
   fecharModal();
 }
 
-// FINALIZAR NO WHATSAPP
+/* ===============================
+   ABRIR CARRINHO (NÃO VAI PRO WHATS)
+================================ */
 function abrirCarrinho() {
+  const lista = document.getElementById("lista-carrinho");
+  lista.innerHTML = "";
+
   if (carrinho.length === 0) {
-    alert("Seu carrinho está vazio");
-    return;
+    lista.innerHTML = "<p>Seu carrinho está vazio</p>";
+  } else {
+    carrinho.forEach((item, index) => {
+      lista.innerHTML += `
+        <p>
+          <strong>${item.nome}</strong><br>
+          Cor: ${item.cor} | Tamanho: ${item.tamanho}
+          <br>
+          <button onclick="removerItem(${index})">❌ Remover</button>
+        </p>
+        <hr>
+      `;
+    });
   }
 
+  document.getElementById("modal-carrinho").style.display = "flex";
+}
+
+function removerItem(index) {
+  carrinho.splice(index, 1);
+  document.getElementById("contador-carrinho").innerText = carrinho.length;
+  abrirCarrinho();
+}
+
+function fecharCarrinho() {
+  document.getElementById("modal-carrinho").style.display = "none";
+}
+
+/* ===============================
+   FINALIZAR NO WHATSAPP
+================================ */
+function finalizarWhatsApp() {
   let mensagem = "🛍️ Pedido Bella Flor:%0A%0A";
 
-  carrinho.forEach((item, index) => {
-    mensagem += `${index + 1}. ${item.nome}%0A`;
+  carrinho.forEach((item, i) => {
+    mensagem += `${i + 1}. ${item.nome}%0A`;
     mensagem += `Cor: ${item.cor}%0A`;
     mensagem += `Tamanho: ${item.tamanho}%0A%0A`;
   });
 
-  mensagem += "Finalizar pedido 💜";
-
   window.open(
-    `https://wa.me/5591985144347?text=${mensagem}`,
+    "https://wa.me/5591985144347?text=" + mensagem,
     "_blank"
   );
 }
-    
+  
   
