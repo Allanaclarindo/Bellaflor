@@ -179,3 +179,24 @@ footer {
 .modal-conteudo button:last-of-type {
   background: #ddd;
 }
+/* ===== MODAL CENTRALIZADO ===== */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 9999;
+}
+
+.modal-conteudo {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 320px;
+  text-align: center;
+}
