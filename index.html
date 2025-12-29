@@ -116,4 +116,27 @@
 </div>
   <script src="script.js"></script>
 </body>
+  <!-- MODAL DO CARRINHO -->
+<div id="modal-carrinho" class="modal" style="display:none">
+  <div class="modal-conteudo">
+    <h3>🛒 Seu Carrinho</h3>
+
+    <div id="lista-carrinho"></div>
+
+    <p>
+      <label>
+        <input type="radio" name="recebimento" value="retirada" checked onchange="atualizarTotal()">
+        Retirada no local
+      </label><br>
+
+      <label>
+        <input type="radio" name="recebimento" value="entrega" onchange="atualizarTotal()">
+        Entrega (+ R$ 10,00)
+      </label>
+    </p>
+
+    <button onclick="finalizarWhatsApp()">Finalizar no WhatsApp</button>
+    <button onclick="fecharCarrinho()">Fechar</button>
+  </div>
+</div>
 </html>
