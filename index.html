@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <title>Bella Flor | Moda Feminina</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
 <header>
@@ -34,99 +34,61 @@
 
 <section id="sobre">
   <h2>Sobre a Bella Flor</h2>
-  <p>Moda feminina com estilo, conforto e elegância para todas as ocasiões.</p>
+  <p>Moda feminina com estilo, conforto e elegância.</p>
 </section>
 
 <section id="contato">
   <h2>Contato</h2>
   <p>
-    📱 WhatsApp: <a href="https://wa.me/5591985144347">Clique aqui</a><br>
-    📸 Instagram:
-    <a href="https://instagram.com/minha_bellaflor.store" target="_blank">@minha_bellaflor.store</a>
+    📱 <a href="https://wa.me/5591985144347">WhatsApp</a><br>
+    📸 <a href="https://instagram.com/minha_bellaflor.store" target="_blank">
+      @minha_bellaflor.store
+    </a>
   </p>
 </section>
-  
+
 <section id="pagamento">
   <h2>Formas de Pagamento</h2>
-  <p>
-    💳 Cartão de Crédito<br>
-    💳 Cartão de Débito<br>
-    💸 Pix<br><br>
-    📲 Pagamentos via <strong>InfinitePay</strong>
-  </p>
+  💳 Crédito | Débito | Pix<br>
+  📲 InfinitePay
 </section>
-  
+
 <footer>
-  <p>© 2025 Bella Flor Moda Feminina</p>
+  © 2025 Bella Flor Moda Feminina
 </footer>
 
-<!-- BOTÃO CARRINHO -->
+<!-- BOTÃO DO CARRINHO -->
 <div id="carrinho-btn" onclick="abrirCarrinho()">
   🛒 <span id="contador-carrinho">0</span>
 </div>
 
 <!-- MODAL DO PRODUTO -->
-<div id="modal" style="display:none" class="modal">
+<div id="modal" class="modal">
   <div class="modal-conteudo">
     <h3 id="modal-nome"></h3>
 
-    <label>Cor:</label>
+    <label>Cor</label>
     <select id="cor"></select>
 
-    <label>Tamanho:</label>
+    <label>Tamanho</label>
     <select id="tamanho"></select>
 
     <button onclick="adicionarCarrinho()">Adicionar ao carrinho</button>
     <button onclick="fecharModal()">Cancelar</button>
   </div>
 </div>
-<div id="modal-carrinho" class="modal" style="display:none">
+
+<!-- MODAL DO CARRINHO -->
+<div id="modal-carrinho" class="modal">
   <div class="modal-conteudo">
     <h3>🛒 Meu Carrinho</h3>
-
-    <div id="lista-carrinho"></div>
-<hr>
-
-<label>
-  <input type="radio" name="entrega" value="Retirada na loja" checked>
-  Retirada na loja
-</label><br>
-
-<label>
-  <input type="radio" name="entrega" value="Entrega">
-  Entrega
-</label>
-
-<p><strong>Total:</strong> R$ <span id="total">0.00</span></p>
-    <button onclick="finalizarWhatsApp()">Finalizar no WhatsApp</button>
-    <button onclick="fecharCarrinho()">Fechar</button>
-  </div>
-</div>
-<div id="modal-carrinho" class="modal" style="display:none">
-  <div class="modal-conteudo">
-    <h3>🛒 Meu Carrinho</h3>
-
-    <!-- LISTA DOS PRODUTOS -->
-    <div id="lista-carrinho"></div>
-
-    <!-- BOTÕES -->
-    <button onclick="finalizarWhatsApp()">Finalizar no WhatsApp</button>
-    <button onclick="fecharCarrinho()">Fechar</button>
-  </div>
-</div>
-  <script src="script.js"></script>
-</body>
-  <!-- MODAL DO CARRINHO -->
-<div id="modal-carrinho" class="modal" style="display:none">
-  <div class="modal-conteudo">
-    <h3>🛒 Seu Carrinho</h3>
 
     <div id="lista-carrinho"></div>
 
     <p>
       <label>
         <input type="radio" name="recebimento" value="retirada" checked onchange="atualizarTotal()">
-        Retirada no local
+        Retirada na loja
       </label><br>
 
       <label>
@@ -135,8 +97,13 @@
       </label>
     </p>
 
+    <p><strong>Total:</strong> R$ <span id="total-final">0.00</span></p>
+
     <button onclick="finalizarWhatsApp()">Finalizar no WhatsApp</button>
     <button onclick="fecharCarrinho()">Fechar</button>
   </div>
 </div>
+
+<script src="script.js"></script>
+</body>
 </html>
