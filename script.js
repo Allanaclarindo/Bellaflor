@@ -1,3 +1,4 @@
+document.addEventListener(DOMConterLoaded", function () {
 let carrinho = [];
 let produtoSelecionado = null;
 
