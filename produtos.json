@@ -31,4 +31,37 @@
     "cores": "Lilás, Branco",
     "tamanhos": "P, M, G"
   }
+    {
+    "nome": "conjunto Raiane",
+    "preco": "R$ 79,90",
+    "valor": 79.90,
+    "imagem": "imagens/conjunto-raiane.jpg",
+    "cores": "Lilás, Branco, Amarelo",
+    "tamanhos": "P, M, G"
+    }
+    {
+    "nome": "vestido tule",
+    "preco": "R$ 79,90",
+    "valor": 79.90,
+    "imagem": "imagens/vestido-tule.jpg",
+    "cores": "Lilás, Rosa, Amarelo",
+    "tamanhos": "P, M, G"
+    }
+  
+    {
+    "nome": "vestido Bombom",
+    "preco": "R$ 79,90",
+    "valor": 79.90,
+    "imagem": "imagens/vestido-bombom.jpg",
+    "cores": "Lilás, Azul, Amarelo",
+    "tamanhos": "P, M, G"
+    }
+  {
+    "nome": "conjunto Allana",
+    "preco": "R$ 79,90",
+    "valor": 79.90,
+    "imagem": "imagens/conjunto-allana.jpg",
+    "cores": "Lilás, Azul, Amarelo",
+    "tamanhos": "P, M, G"
+  }
 ]
