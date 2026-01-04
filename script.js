@@ -1,7 +1,9 @@
 let produtos = [];
 let carrinho = [];
 let produtoSelecionado = null;
-
+function verImagem(src) {
+   window.open(src, "_blank");
+}
 const lista = document.getElementById('lista-produtos');
 
 /* ===============================
@@ -23,11 +25,12 @@ function renderizarProdutos() {
   produtos.forEach((p, index) => {
     lista.innerHTML += `
       <div class="produto">
-        <img src="${p.imagem}" alt="${p.nome}" onclick="abrirModal(${index})">
+        <img src="${p.imagem}" alt="${p.nome}" onclick="verImagem('${p.imagem}')">
         <h3>${p.nome}</h3>
         <p>${p.preco}</p>
         <p><strong>Cores:</strong> ${p.cores}</p>
         <p><strong>Tamanhos:</strong> ${p.tamanhos}</p>
+        <button onclick="abrirModal(${index})">Comprar</button>
       </div>
     `;
   });
