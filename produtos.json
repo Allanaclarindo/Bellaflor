@@ -63,4 +63,36 @@
     "cores": "Lilás, Azul, Amarelo",
     "tamanhos": "P, M, G"
   }
+  {
+    "nome": "Top solange",
+    "preco": "R$ 45,00",
+    "valor": 45,00,
+    "imagem": "imagens/top-solange.jpg",
+    "cores": "Lilás, Branco",
+    "tamanhos": "unico"
+  },
+  {
+    "nome": "Macaquinho Bia",
+    "preco": "R$ 69,99",
+    "valor": 69,99,
+    "imagem": "imagens/macaquinho-bia.jpg",
+    "cores": "Roxo",
+    "tamanhos": "unico"
+  },
+  {
+    "nome": "Conjuno Amanda",
+    "preco": "R$ 68,00",
+    "valor": 68,00,
+    "imagem": "imagens/conjuno-amanda.jpg",
+    "cores": "Lilás, Branco",
+    "tamanhos": "unico"
+  },
+    {
+    "nome": "shorts Nike",
+    "preco": "R$ 55,00",
+    "valor": 55,00,
+    "imagem": "imagens/shorts-nike.jpg",
+    "cores": "Lilás, Azul, Amarelo",
+    "tamanhos": "unico"
+  }
 ]
