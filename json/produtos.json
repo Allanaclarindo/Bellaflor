@@ -1,0 +1,98 @@
+[
+  {
+    "nome": "Vestido Luna",
+    "preco": "R$ 99,90",
+    "valor": 99.90,
+    "imagem": "imagens/vestido-luna.jpg",
+    "cores": "Lilás, Branco",
+    "tamanhos": "P, M, G"
+  },
+  {
+    "nome": "Conjunto Iris",
+    "preco": "R$ 79,90",
+    "valor": 79.90,
+    "imagem": "imagens/conjunto-iris.jpg",
+    "cores": "Roxo",
+    "tamanhos": "M, G"
+  },
+  {
+    "nome": "Conjunto Alfaiataria",
+    "preco": "R$ 79,90",
+    "valor": 79.90,
+    "imagem": "imagens/conjunto-alfaiataria.jpg",
+    "cores": "Lilás, Branco",
+    "tamanhos": "P, M, G"
+  },
+  {
+    "nome": "Vestido Alfaiataria",
+    "preco": "R$ 79,90",
+    "valor": 79.90,
+    "imagem": "imagens/vestido-alfaiataria.jpg",
+    "cores": "Lilás, Branco",
+    "tamanhos": "P, M, G"
+  },
+    {
+    "nome": "Conjunto Raiane",
+    "preco": "R$ 79,90",
+    "valor": 79.90,
+    "imagem": "imagens/conjunto-raiane.jpg",
+    "cores": "Lilás, Branco, Amarelo",
+    "tamanhos": "P, M, G"
+    },
+    {
+    "nome": "vestido tule",
+    "preco": "R$ 79,90",
+    "valor": 79.90,
+    "imagem": "imagens/vestido-tule.jpg",
+    "cores": "Lilás, Rosa, Amarelo",
+    "tamanhos": "P, M, G"
+    },
+   {
+    "nome": "vestido Bombom",
+    "preco": "R$ 79,90",
+    "valor": 79.90,
+    "imagem": "imagens/vestido-bombom.jpg",
+    "cores": "Lilás, Azul, Amarelo",
+    "tamanhos": "P, M, G"
+    },
+  {
+    "nome": "Conjunto Allana",
+    "preco": "R$ 79,90",
+    "valor": 79.90,
+    "imagem": "imagens/conjunto-allana.jpg",
+    "cores": "Lilás, Azul, Amarelo",
+    "tamanhos": "P, M, G"
+  },
+  {
+    "nome": "Top solange",
+    "preco": "R$ 45,00",
+    "valor": 44.99,
+    "imagem": "imagens/top-solange.jpg",
+    "cores": "Lilás, Branco",
+    "tamanhos": "P, M, G"
+  },
+  {
+    "nome": "Macaquinho Bia",
+    "preco": "R$ 69,99",
+    "valor": 69.99,
+    "imagem": "imagens/macaquinho-bia.jpg",
+    "cores": "Roxo",
+    "tamanhos": "P, M, G"
+  },
+  {
+    "nome": "Conjunto Amanda",
+    "preco": "R$ 68,00",
+    "valor": 67.99,
+    "imagem": "imagens/conjunto-amanda.jpg",
+    "cores": "Lilás, Branco",
+    "tamanhos": "P, M, G"
+  },
+    {
+    "nome": "shorts Nike",
+    "preco": "R$ 54,99",
+    "valor": 54.99,
+    "imagem": "imagens/shorts-nike.jpg",
+    "cores": "Lilás, Azul, Amarelo",
+    "tamanhos": "P, M, G"
+  }
+]
