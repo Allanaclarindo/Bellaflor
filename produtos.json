@@ -66,7 +66,7 @@
   {
     "nome": "Top solange",
     "preco": "R$ 45,00",
-    "valor": 44,99,
+    "valor": 44.99,
     "imagem": "imagens/top-solange.jpg",
     "cores": "Lilás, Branco",
     "tamanhos": "P ,M ,G"
@@ -74,7 +74,7 @@
   {
     "nome": "Macaquinho Bia",
     "preco": "R$ 69,99",
-    "valor": 69,99,
+    "valor": 69.99,
     "imagem": "imagens/macaquinho-bia.jpg",
     "cores": "Roxo",
     "tamanhos": "P ,M ,G"
@@ -82,7 +82,7 @@
   {
     "nome": "Conjuno Amanda",
     "preco": "R$ 68,00",
-    "valor": 67,99,
+    "valor": 67.99,
     "imagem": "imagens/conjuno-amanda.jpg",
     "cores": "Lilás, Branco",
     "tamanhos": "P ,M ,G"
@@ -90,7 +90,7 @@
     {
     "nome": "shorts Nike",
     "preco": "R$ 54,99",
-    "valor": 54,99,
+    "valor": 54.99,
     "imagem": "imagens/shorts-nike.jpg",
     "cores": "Lilás, Azul, Amarelo",
     "tamanhos": "P,M,G"
