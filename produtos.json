@@ -123,7 +123,7 @@
     "nome": "Macaquinho keury",
     "preco": "R$ 64,99",
     "valor": 64.99,
-    "imagem": [ 
+    "imagens": [ 
      "imagens/macaquinho-keury.jpg",
       "imagens/macaquinho-keury-2.jpg"
     ],
