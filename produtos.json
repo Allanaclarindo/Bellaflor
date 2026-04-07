@@ -126,8 +126,9 @@
     "valor": 64.99,
     "imagem": [ 
      "imagens/macaquinho-keury.jpg",
-      "imagens/macaquinho-keury-2.jpg",
-      "imagens/macaquinho-keury-3.jpg"
+      "imagens/macaquinho-keury-2.jpg"
+    ],
+      
     ],
     "cores": "Rosa, Azul, Verde, Preto, Amarelo",
     "tamanhos": "P, M, G"
@@ -137,7 +138,7 @@
     "preco": "R$ 38,99",
     "valor": 38.99,
     "imagem": "imagens/top-poliamida.jpg",
-    "cores": "Marron, Azul, Branco, Preto",
-    "tamanhos": "P, M, G"
+    "uvcores": "Marron, Azul, Branco, Preto",
+5w    "tamanhos": "P, M, G"
   }
 ]
