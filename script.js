@@ -23,10 +23,9 @@ function renderizarProdutos() {
     lista.innerHTML += `
       <div class="produto">
         <img 
-          id="img-${index}" 
           src="${imagens[0]}" 
           alt="${p.nome}" 
-          onclick="trocarImagemLista(${index})"
+          onclick="abrirImagemFull(${index})"
         >
 
         <h3>${p.nome}</h3>
@@ -36,6 +35,7 @@ function renderizarProdutos() {
     `;
   });
 }
+    
 function trocarImagemLista(index) {
   let produto = produtos[index];
   let imagens = produto.imagens || [produto.imagem];
