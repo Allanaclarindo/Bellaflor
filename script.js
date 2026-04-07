@@ -4,11 +4,6 @@ let produtoSelecionado = null;
 
 const lista = document.getElementById('lista-produtos');
 
-/* VISUALIZAR IMAGEM */
-function verImagem(src) {
-  window.open(src, "_blank");
-}
-
 /* CARREGAR PRODUTOS */
 fetch('produtos.json')
   .then(response => response.json())
@@ -26,7 +21,9 @@ function renderizarProdutos() {
 
     lista.innerHTML += `
       <div class="produto">
-        <img src="${img}" alt="${p.nome}" onclick="verImagem('${img}')">
+        <!-- 👇 AQUI FOI A MUDANÇA -->
+        <img src="${img}" alt="${p.nome}" onclick="abrirModal(${index})">
+        
         <h3>${p.nome}</h3>
         <p>${p.preco}</p>
         <button onclick="abrirModal(${index})">Comprar</button>
