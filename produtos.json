@@ -99,7 +99,7 @@
     "nome": "Blusa Adidas - Dry Fit",
     "preco": "R$ 38,99",
     "valor": 38.99,
-    "imagem": "imagens/blusa-adidas-dry fit.jpg",
+    "imagem": "imagens/blusa-adidas-dry-fit.jpg",
     "cores": "Preto, Azul, Branco, Laranja",
     "tamanhos": "P, M, G"
    }, 
@@ -135,5 +135,5 @@
     "imagem": "imagens/top-poliamida.jpg",
     "cores": "Marron, Azul, Branco, Preto",
     "tamanhos": "P, M, G"
-  }, 
+  }
 ]
