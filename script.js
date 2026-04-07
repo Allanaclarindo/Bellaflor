@@ -17,7 +17,7 @@ fetch('produtos.json')
     renderizarProdutos();
   });
 
-/* RENDERIZAR PRODUTOS (AGORA SUPORTA VÁRIAS IMAGENS) */
+/* RENDERIZAR PRODUTOS */
 function renderizarProdutos() {
   lista.innerHTML = '';
 
@@ -42,34 +42,22 @@ function abrirModal(index) {
   document.getElementById("modal").style.display = "flex";
   document.getElementById("modal-nome").innerText = produtoSelecionado.nome;
 
-  /* IMAGENS DO PRODUTO */
   const containerImagens = document.getElementById("modal-imagens");
 
-  if (produtoSelecionado.imagens) {
-   const containerImagens = document.getElementById("modal-imagens");
+  let imagens = produtoSelecionado.imagens || [produtoSelecionado.imagem];
+  let imagemPrincipal = imagens[0];
 
-let imagens = produtoSelecionado.imagens || [produtoSelecionado.imagem];
+  containerImagens.innerHTML = `
+    <img id="img-principal" src="${imagemPrincipal}" style="width:100%; border-radius:10px; margin-bottom:10px;">
 
-// imagem principal
-let imagemPrincipal = imagens[0];
-
-containerImagens.innerHTML = `
-  <img id="img-principal" src="${imagemPrincipal}" style="width:100%; border-radius:10px; margin-bottom:10px;">
-
-  <div style="display:flex; gap:10px;">
-    ${imagens.map(img => `
-      <img src="${img}" 
-        onclick="trocarImagem('${img}')"
-        style="width:60px; cursor:pointer; border-radius:6px;">
-    `).join("")}
-  </div>
-`; 
-    
-  } else {
-    containerImagens.innerHTML = `
-      <img src="${produtoSelecionado.imagem}" style="width:100%; border-radius:10px;">
-    `;
-  }
+    <div style="display:flex; gap:10px;">
+      ${imagens.map(img => `
+        <img src="${img}" 
+          onclick="trocarImagem('${img}')"
+          style="width:60px; cursor:pointer; border-radius:6px;">
+      `).join("")}
+    </div>
+  `;
 
   /* CORES */
   document.getElementById("cor").innerHTML =
@@ -78,6 +66,11 @@ containerImagens.innerHTML = `
   /* TAMANHOS */
   document.getElementById("tamanho").innerHTML =
     produtoSelecionado.tamanhos.split(",").map(t => `<option>${t.trim()}</option>`).join("");
+}
+
+/* TROCAR IMAGEM */
+function trocarImagem(src) {
+  document.getElementById("img-principal").src = src;
 }
 
 function fecharModal() {
@@ -98,7 +91,7 @@ function adicionarCarrinho() {
   fecharModal();
 }
 
-/* ===== CARRINHO ===== */
+/* ABRIR CARRINHO */
 function abrirCarrinho() {
   const listaCarrinho = document.getElementById("lista-carrinho");
   listaCarrinho.innerHTML = "";
@@ -144,6 +137,7 @@ function atualizarTotal() {
   document.getElementById("total-final").innerText = total.toFixed(2);
 }
 
+/* WHATSAPP */
 function finalizarWhatsApp() {
   if (carrinho.length === 0) {
     alert("Seu carrinho está vazio");
@@ -173,7 +167,7 @@ function finalizarWhatsApp() {
   window.open("https://wa.me/5591985144347?text=" + mensagem, "_blank");
 }
 
-/* ===== EXPOR FUNÇÕES ===== */
+/* EXPOR FUNÇÕES */
 window.abrirModal = abrirModal;
 window.fecharModal = fecharModal;
 window.adicionarCarrinho = adicionarCarrinho;
@@ -182,3 +176,4 @@ window.fecharCarrinho = fecharCarrinho;
 window.removerItem = removerItem;
 window.atualizarTotal = atualizarTotal;
 window.finalizarWhatsApp = finalizarWhatsApp;
+window.trocarImagem = trocarImagem;
