@@ -36,7 +36,22 @@ function renderizarProdutos() {
     `;
   });
 }
+function trocarImagemLista(index) {
+  let produto = produtos[index];
+  let imagens = produto.imagens || [produto.imagem];
 
+  if (imagens.length < 2) return;
+
+  let imgElement = document.getElementById(`img-${index}`);
+
+  let atual = imgElement.src;
+
+  // pega próxima imagem
+  let posicaoAtual = imagens.findIndex(img => atual.includes(img));
+  let proxima = (posicaoAtual + 1) % imagens.length;
+
+  imgElement.src = imagens[proxima];
+}
 /* MODAL */
 function abrirModal(index) {
   produtoSelecionado = produtos[index];
