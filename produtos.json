@@ -94,5 +94,46 @@
     "imagem": "imagens/shorts-nike.jpg",
     "cores": "Lilás, Azul, Amarelo",
     "tamanhos": "P, M, G"
-  }
+  },
+   {
+    "nome": "Blusa Adidas - Dry Fit",
+    "preco": "R$ 38,99",
+    "valor": 38.99,
+    "imagem": "imagens/blusa-adidas-dry fit.jpg",
+    "cores": "Preto, Azul, Branco, Laranja",
+    "tamanhos": "P, M, G"
+   }, 
+    {
+    "nome": "shorts Tecido Duplo",
+    "preco": "R$ 34,99",
+    "valor": 34.99,
+    "imagem": "imagens/shorts-tecido-duplo.jpg",
+    "cores": "Rosa, Azul, Branco",
+    "tamanhos": "P, M, G"
+  },
+   {
+    "nome": "Blusa Com Ziper",
+    "preco": "R$ 64,99",
+    "valor": 64.99,
+    "imagem": "imagens/blusa-com-ziper.jpg",
+    "cores": "Rosa, Azul, Branco, Preto",
+    "tamanhos": "P, M, G"
+  },
+  
+   {
+    "nome": "Macaquinho keury",
+    "preco": "R$ 64,99",
+    "valor": 64.99,
+    "imagem": "imagens/macaquinho-keury.jpg",
+    "cores": "Rosa, Azul, Verde, Preto, Amarelo",
+    "tamanhos": "P, M, G"
+  },
+    {
+    "nome": "Top poliamida",
+    "preco": "R$ 38,99",
+    "valor": 38.99,
+    "imagem": "imagens/top-poliamida.jpg",
+    "cores": "Marron, Azul, Branco, Preto",
+    "tamanhos": "P, M, G"
+  }, 
 ]
