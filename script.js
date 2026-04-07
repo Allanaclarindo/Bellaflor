@@ -17,13 +17,18 @@ function renderizarProdutos() {
   lista.innerHTML = '';
 
   produtos.forEach((p, index) => {
-    const img = p.imagens ? p.imagens[0] : p.imagem;
+
+    let imagens = p.imagens || [p.imagem];
 
     lista.innerHTML += `
       <div class="produto">
-        <!-- 👇 AQUI FOI A MUDANÇA -->
-        <img src="${img}" alt="${p.nome}" onclick="abrirModal(${index})">
-        
+        <img 
+          id="img-${index}" 
+          src="${imagens[0]}" 
+          alt="${p.nome}" 
+          onclick="trocarImagemLista(${index})"
+        >
+
         <h3>${p.nome}</h3>
         <p>${p.preco}</p>
         <button onclick="abrirModal(${index})">Comprar</button>
