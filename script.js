@@ -194,3 +194,55 @@ window.removerItem = removerItem;
 window.atualizarTotal = atualizarTotal;
 window.finalizarWhatsApp = finalizarWhatsApp;
 window.trocarImagem = trocarImagem;
+let imagensAtuais = [];
+let indexAtual = 0;
+
+function abrirImagemFull(index) {
+  let produto = produtos[index];
+
+  imagensAtuais = produto.imagens || [produto.imagem];
+  indexAtual = 0;
+
+  document.getElementById("modal-imagem-full").style.display = "flex";
+
+  atualizarImagemFull();
+}
+
+function atualizarImagemFull() {
+  const img = document.getElementById("img-full");
+  const mini = document.getElementById("miniaturas");
+
+  img.src = imagensAtuais[indexAtual];
+
+  mini.innerHTML = imagensAtuais.map((imgSrc, i) => `
+    <img src="${imgSrc}" 
+      onclick="irParaImagem(${i})"
+      style="width:50px; border-radius:5px; cursor:pointer; ${i === indexAtual ? 'border:2px solid white;' : ''}">
+  `).join("");
+}
+
+function irParaImagem(i) {
+  indexAtual = i;
+  atualizarImagemFull();
+}
+
+function fecharImagemFull() {
+  document.getElementById("modal-imagem-full").style.display = "none";
+}
+let startX = 0;
+
+document.addEventListener("touchstart", e => {
+  startX = e.touches[0].clientX;
+});
+
+document.addEventListener("touchend", e => {
+  let endX = e.changedTouches[0].clientX;
+
+  if (startX - endX > 50) {
+    indexAtual = (indexAtual + 1) % imagensAtuais.length;
+  } else if (endX - startX > 50) {
+    indexAtual = (indexAtual - 1 + imagensAtuais.length) % imagensAtuais.length;
+  }
+
+  atualizarImagemFull();
+});
