@@ -17,14 +17,16 @@ fetch('produtos.json')
     renderizarProdutos();
   });
 
-/* RENDERIZAR PRODUTOS — UMA IMAGEM */
+/* RENDERIZAR PRODUTOS (AGORA SUPORTA VÁRIAS IMAGENS) */
 function renderizarProdutos() {
   lista.innerHTML = '';
 
   produtos.forEach((p, index) => {
+    const img = p.imagens ? p.imagens[0] : p.imagem;
+
     lista.innerHTML += `
       <div class="produto">
-        <img src="${p.imagem}" alt="${p.nome}" onclick="verImagem('${p.imagem}')">
+        <img src="${img}" alt="${p.nome}" onclick="verImagem('${img}')">
         <h3>${p.nome}</h3>
         <p>${p.preco}</p>
         <button onclick="abrirModal(${index})">Comprar</button>
@@ -36,12 +38,31 @@ function renderizarProdutos() {
 /* MODAL */
 function abrirModal(index) {
   produtoSelecionado = produtos[index];
+
   document.getElementById("modal").style.display = "flex";
   document.getElementById("modal-nome").innerText = produtoSelecionado.nome;
 
+  /* IMAGENS DO PRODUTO */
+  const containerImagens = document.getElementById("modal-imagens");
+
+  if (produtoSelecionado.imagens) {
+    containerImagens.innerHTML = produtoSelecionado.imagens
+      .map(img => `
+        <img src="${img}" 
+        onclick="verImagem('${img}')" 
+        style="width:80px; margin:5px; cursor:pointer; border-radius:8px;">
+      `).join("");
+  } else {
+    containerImagens.innerHTML = `
+      <img src="${produtoSelecionado.imagem}" style="width:100%; border-radius:10px;">
+    `;
+  }
+
+  /* CORES */
   document.getElementById("cor").innerHTML =
     produtoSelecionado.cores.split(",").map(c => `<option>${c.trim()}</option>`).join("");
 
+  /* TAMANHOS */
   document.getElementById("tamanho").innerHTML =
     produtoSelecionado.tamanhos.split(",").map(t => `<option>${t.trim()}</option>`).join("");
 }
@@ -64,7 +85,6 @@ function adicionarCarrinho() {
   fecharModal();
 }
 
-/* EXPOR FUNÇÕES */
 /* ===== CARRINHO ===== */
 function abrirCarrinho() {
   const listaCarrinho = document.getElementById("lista-carrinho");
