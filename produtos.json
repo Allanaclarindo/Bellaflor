@@ -124,7 +124,11 @@
     "nome": "Macaquinho keury",
     "preco": "R$ 64,99",
     "valor": 64.99,
-    "imagem": "imagens/macaquinho-keury.jpg",
+    "imagem": [ 
+     "imagens/macaquinho-keury.jpg",
+      "imagens/macaquinho-keury-2.jpg",
+      "imagens/macaquinho-keury-3.jpg"
+    ],
     "cores": "Rosa, Azul, Verde, Preto, Amarelo",
     "tamanhos": "P, M, G"
   },
