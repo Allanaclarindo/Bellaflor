@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>Bella Flor | Moda Feminina</title>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -14,53 +13,10 @@
   <p>Moda Feminina</p>
 </header>
 
-<nav>
-  <a href="#produtos">Produtos</a>
-  <a href="#sobre">Sobre</a>
-  <a href="#contato">Contato</a>
-</nav>
-
-<section class="hero">
-  <h2>Realce sua beleza 🌸</h2>
-  <a class="btn-whatsapp" href="https://wa.me/5591985144347" target="_blank">
-    Comprar pelo WhatsApp
-  </a>
-</section>
-
 <section id="produtos">
   <h2>Catálogo</h2>
   <div class="produtos" id="lista-produtos"></div>
 </section>
-
-<section id="sobre">
-  <h2>Sobre a Bella Flor</h2>
-  <p>Moda feminina com estilo, conforto e elegância.</p>
-</section>
-
-<section id="contato">
-  <h2>Contato</h2>
-  <p>
-    📱 <a href="https://wa.me/5591985144347">WhatsApp</a><br>
-    📸 <a href="https://instagram.com/minha_bellaflor.store" target="_blank">
-      @minha_bellaflor.store
-    </a>
-  </p>
-</section>
-
-<section id="pagamento">
-  <h2>Formas de Pagamento</h2>
-  💳 Crédito | Débito | Pix<br>
-  📲 InfinitePay
-</section>
-
-<footer>
-  © 2025 Bella Flor Moda Feminina
-</footer>
-
-<!-- BOTÃO DO CARRINHO -->
-<div id="carrinho-btn" onclick="abrirCarrinho()">
-  🛒 <span id="contador-carrinho">0</span>
-</div>
 
 <!-- MODAL DO PRODUTO -->
 <div id="modal" class="modal">
@@ -74,38 +30,12 @@
     <label>Tamanho</label>
     <select id="tamanho"></select>
 
-    <button onclick="adicionarCarrinho()">Adicionar ao carrinho</button>
-    <button onclick="fecharModal()">Cancelar</button>
+    <button onclick="adicionarCarrinho()">Adicionar</button>
+    <button onclick="fecharModal()">Fechar</button>
   </div>
 </div>
 
-<!-- MODAL DO CARRINHO -->
-<div id="modal-carrinho" class="modal">
-  <div class="modal-conteudo">
-    <h3>🛒 Meu Carrinho</h3>
-
-    <div id="lista-carrinho"></div>
-
-    <p>
-      <label>
-        <input type="radio" name="recebimento" value="retirada" checked onchange="atualizarTotal()">
-        Retirada na loja
-      </label><br>
-
-      <label>
-        <input type="radio" name="recebimento" value="entrega" onchange="atualizarTotal()">
-        Entrega (+ R$ 10,00)
-      </label>
-    </p>
-
-    <p><strong>Total:</strong> R$ <span id="total-final">0.00</span></p>
-
-    <button onclick="finalizarWhatsApp()">Finalizar no WhatsApp</button>
-    <button onclick="fecharCarrinho()">Fechar</button>
-  </div>
-</div>
-
-<script src="script.js"></script>
+<!-- 🔥 MODAL TELA CHEIA -->
 <div id="modal-imagem-full" style="
   display:none;
   position:fixed;
@@ -135,5 +65,9 @@
   ">✕</button>
 
 </div>
+
+<!-- ⚠️ SCRIPT SEMPRE POR ÚLTIMO -->
+<script src="script.js"></script>
+
 </body>
 </html>
