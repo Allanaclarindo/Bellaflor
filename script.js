@@ -46,12 +46,25 @@ function abrirModal(index) {
   const containerImagens = document.getElementById("modal-imagens");
 
   if (produtoSelecionado.imagens) {
-    containerImagens.innerHTML = produtoSelecionado.imagens
-      .map(img => `
-        <img src="${img}" 
-        onclick="verImagem('${img}')" 
-        style="width:80px; margin:5px; cursor:pointer; border-radius:8px;">
-      `).join("");
+   const containerImagens = document.getElementById("modal-imagens");
+
+let imagens = produtoSelecionado.imagens || [produtoSelecionado.imagem];
+
+// imagem principal
+let imagemPrincipal = imagens[0];
+
+containerImagens.innerHTML = `
+  <img id="img-principal" src="${imagemPrincipal}" style="width:100%; border-radius:10px; margin-bottom:10px;">
+
+  <div style="display:flex; gap:10px;">
+    ${imagens.map(img => `
+      <img src="${img}" 
+        onclick="trocarImagem('${img}')"
+        style="width:60px; cursor:pointer; border-radius:6px;">
+    `).join("")}
+  </div>
+`; 
+    
   } else {
     containerImagens.innerHTML = `
       <img src="${produtoSelecionado.imagem}" style="width:100%; border-radius:10px;">
