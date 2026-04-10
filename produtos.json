@@ -138,4 +138,12 @@
     "cores": "Marron, Azul, Branco, Preto",
     "tamanhos": "P, M, G"
   }
+    {
+    "nome": "Cropped Brasileiríssima",
+    "preco": "R$ 78,99",
+    "valor": 78.99,
+    "imagem": "imagens/cropped-brasileiríssima.jpg",
+    "cores": "Azul, Branco, Preto",
+    "tamanhos": "P, M, G"
+    } 
 ]
