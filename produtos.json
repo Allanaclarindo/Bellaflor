@@ -87,7 +87,7 @@
     "cores": "Lilás, Branco",
     "tamanhos": "P, M, G"
   },
-    {
+  {
     "nome": "shorts Nike",
     "preco": "R$ 54,99",
     "valor": 54.99,
@@ -145,5 +145,13 @@
     "imagem": "imagens/cropped-brasileirissima.jpg",
     "cores": "Azul, Branco, Preto",
     "tamanhos": "P, M, G"
-    } 
+    },
+  {
+    "nome": "Top Brasileirissima",
+    "preco": "R$ 78,99",
+    "valor": 78.99,
+    "imagem": "imagens/top-brasileirissima.jpg",
+    "cores": "Azul, Branco, Preto",
+    "tamanhos": "P, M, G"
+  }
 ]
