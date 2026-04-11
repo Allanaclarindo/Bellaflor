@@ -147,11 +147,19 @@
     "tamanhos": "P, M, G"
     },
   {
-    "nome": "Top Brasileirissima",
+    "nome": "Top Brasileiríssima",
     "preco": "R$ 78,99",
     "valor": 78.99,
     "imagem": "imagens/top-brasileirissima.jpg",
-    "cores": "Azul, Branco, Preto",
+    "cores": "Azul, Verde, Amarelo",
+    "tamanhos": "P, M, G"
+  },
+   {
+    "nome": "Top Brasileiríssima",
+    "preco": "R$ 78,99",
+    "valor": 78.99,
+    "imagem": "imagens/top-brasileirissima3.jpg",
+    "cores": "Azul, Verde, Amarelo",
     "tamanhos": "P, M, G"
   }
 ]
