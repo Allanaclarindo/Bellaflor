@@ -1,11 +1,8 @@
 let produtos = [];
 let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
 let produtoSelecionado = null;
-
 let frete = 0;
-
 const lista = document.getElementById("lista-produtos");
-
 /* ================= PRODUTOS ================= */
 fetch("produtos.json")
   .then(res => res.json())
@@ -14,197 +11,169 @@ fetch("produtos.json")
     renderizarProdutos();
     atualizarCarrinho();
   });
-
 function renderizarProdutos() {
   lista.innerHTML = "";
-
   produtos.forEach((p, index) => {
-    let img = p.imagens || [p.imagem];
-
+    const img = p.imagens || [p.imagem];
     lista.innerHTML += `
       <div class="produto">
         <img src="${img[0]}" onclick="abrirModal(${index})">
         <h3>${p.nome}</h3>
         <p>${p.preco}</p>
-
         <button onclick="abrirModal(${index})">Comprar</button>
         <button onclick="adicionarAoCarrinho(${index})">Adicionar</button>
       </div>
     `;
   });
 }
-
 /* ================= MODAL ================= */
 function abrirModal(index) {
   produtoSelecionado = produtos[index];
-
   document.getElementById("modal").style.display = "flex";
   document.getElementById("modal-nome").innerText = produtoSelecionado.nome;
-
-  let imagens = produtoSelecionado.imagens || [produtoSelecionado.imagem];
-
+  const imagens = produtoSelecionado.imagens || [produtoSelecionado.imagem];
+  const cores = produtoSelecionado.cores
+    ? produtoSelecionado.cores.split(",").map(c => c.trim())
+    : ["Única"];
+  const tamanhos = produtoSelecionado.tamanhos
+    ? produtoSelecionado.tamanhos.split(",").map(t => t.trim())
+    : ["Único"];
   document.getElementById("modal-imagens").innerHTML = `
-    <img id="img-principal" src="${imagens[0]}" style="width:100%">
-
+    <img id="img-principal"
+         src="${imagens[0]}"
+         style="width:100%; border-radius:10px;">
     <label>Cor</label>
-    <select id="cor"></select>
-
+    <select id="cor">
+      ${cores.map(c => `<option value="${c}">${c}</option>`).join("")}
+    </select>
     <label>Tamanho</label>
     <select id="tamanho">
-      <option>P</option>
-      <option>M</option>
-      <option>G</option>
+      ${tamanhos.map(t => `<option value="${t}">${t}</option>`).join("")}
     </select>
-
-    <button onclick="adicionarDoModal()">Adicionar ao carrinho</button>
-
-    <div style="display:flex; gap:10px; margin-top:10px;">
+    <button onclick="adicionarDoModal()">
+      Adicionar ao carrinho
+    </button>
+    <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap;">
       ${imagens.map(img => `
-        <img src="${img}" onclick="trocarImagem('${img}')" style="width:60px; cursor:pointer">
+        <img src="${img}"
+             onclick="trocarImagem('${img}')"
+             style="width:60px;height:60px;object-fit:cover;cursor:pointer;border-radius:8px;">
       `).join("")}
     </div>
   `;
-
-  setTimeout(() => {
-    const cor = document.getElementById("cor");
-
-    if (produtoSelecionado.cores) {
-      cor.innerHTML = produtoSelecionado.cores
-        .split(",")
-        .map(c => `<option value="${c.trim()}">${c.trim()}</option>`)
-        .join("");
-    } else {
-      cor.innerHTML = `<option>Única</option>`;
-    }
-  }, 0);
 }
-
 function trocarImagem(src) {
   document.getElementById("img-principal").src = src;
 }
-
 function fecharModal() {
   document.getElementById("modal").style.display = "none";
 }
-
 /* ================= CARRINHO ================= */
 function adicionarAoCarrinho(index) {
   const p = produtos[index];
-
   carrinho.push({
     nome: p.nome,
     preco: p.valor,
     quantidade: 1,
     cor: p.cores ? p.cores.split(",")[0].trim() : "Única",
-    tamanho: "M"
+    tamanho: p.tamanhos ? p.tamanhos.split(",")[0].trim() : "Único"
   });
-
   atualizarCarrinho();
 }
-
 function adicionarDoModal() {
   const cor = document.getElementById("cor").value;
   const tamanho = document.getElementById("tamanho").value;
-
   carrinho.push({
     nome: produtoSelecionado.nome,
     preco: produtoSelecionado.valor,
     quantidade: 1,
-    cor,
-    tamanho
+    cor: cor,
+    tamanho: tamanho
   });
-
   atualizarCarrinho();
+  fecharModal();
 }
-
 /* ================= CONTROLES ================= */
 function aumentar(i) {
   carrinho[i].quantidade++;
   atualizarCarrinho();
 }
-
 function diminuir(i) {
   if (carrinho[i].quantidade > 1) {
     carrinho[i].quantidade--;
-    atualizarCarrinho();
+  } else {
+    carrinho.splice(i, 1);
   }
+  atualizarCarrinho();
 }
-
 function remover(i) {
   carrinho.splice(i, 1);
   atualizarCarrinho();
 }
-
-/* ================= CARRINHO UI ================= */
+/* ================= CARRINHO ================= */
 function abrirCarrinho() {
   document.getElementById("carrinho-lateral").classList.add("ativo");
 }
-
 function fecharCarrinho() {
   document.getElementById("carrinho-lateral").classList.remove("ativo");
 }
-
 /* ================= FRETE ================= */
 function calcularFrete() {
-  frete = 10.00; // Belém fixo
+  frete = 10.00;
 }
-
 /* ================= ATUALIZAR ================= */
 function atualizarCarrinho() {
   const box = document.getElementById("itens-carrinho");
   box.innerHTML = "";
-
   let subtotal = 0;
-
   carrinho.forEach((item, i) => {
     subtotal += item.preco * item.quantidade;
-
     box.innerHTML += `
       <div class="item-carrinho">
         <b>${item.nome}</b><br>
         Cor: ${item.cor}<br>
         Tamanho: ${item.tamanho}<br>
-        R$ ${item.preco.toFixed(2)}<br>
-
-        <button onclick="diminuir(${i})">-</button>
-        ${item.quantidade}
+        R$ ${item.preco.toFixed(2)}<br><br>
+        <button onclick="diminuir(${i})">−</button>
+        <strong>${item.quantidade}</strong>
         <button onclick="aumentar(${i})">+</button>
-
-        <button onclick="remover(${i})">X</button>
+        <button onclick="remover(${i})">🗑️</button>
       </div>
     `;
   });
-
   calcularFrete();
-
-  let totalFinal = subtotal + frete;
-
-  document.getElementById("total").innerText =
-    `Subtotal: R$ ${subtotal.toFixed(2)} | Frete: R$ ${frete.toFixed(2)} | Total: R$ ${totalFinal.toFixed(2)}`;
-
+  const totalFinal = subtotal + frete;
+  document.getElementById("total").innerHTML = `
+    <b>Subtotal:</b> R$ ${subtotal.toFixed(2)}<br>
+    <b>Frete:</b> R$ ${frete.toFixed(2)}<br>
+    <b>Total:</b> R$ ${totalFinal.toFixed(2)}
+  `;
   document.getElementById("contador").innerText = carrinho.length;
-
   localStorage.setItem("carrinho", JSON.stringify(carrinho));
 }
-
 /* ================= WHATSAPP ================= */
 function enviarCarrinhoWhatsApp() {
-  if (carrinho.length === 0) return;
-
-  let msg = "🛍 PEDIDO:%0A%0A";
+  if (carrinho.length === 0) {
+    alert("Seu carrinho está vazio.");
+    return;
+  }
   let subtotal = 0;
-
-  carrinho.forEach(p => {
-    msg += `- ${p.nome} | ${p.cor} | ${p.tamanho} x${p.quantidade} = R$ ${p.preco}%0A`;
-    subtotal += p.preco * p.quantidade;
+  let msg = "🛍 *PEDIDO BELLA FLOR*%0A%0A";
+  carrinho.forEach(item => {
+    subtotal += item.preco * item.quantidade;
+    msg += `• ${item.nome}%0A`;
+    msg += `Cor: ${item.cor}%0A`;
+    msg += `Tamanho: ${item.tamanho}%0A`;
+    msg += `Quantidade: ${item.quantidade}%0A`;
+    msg += `Valor: R$ ${(item.preco * item.quantidade).toFixed(2)}%0A%0A`;
   });
-
   calcularFrete();
-
-  let totalFinal = subtotal + frete;
-
-  msg += `%0A🚚 Frete: R$ ${frete.toFixed(2)}`;
-  msg += `%0A💰 TOTAL FINAL: R$ ${totalFinal.toFixed(2)}`;
-
-  window.open(`https://wa.me/5591985144347?text=${msg}`, "_blank");
-      }
+  const totalFinal = subtotal + frete;
+  msg += `🚚 Frete: R$ ${frete.toFixed(2)}%0A`;
+  msg += `💰 Total: R$ ${totalFinal.toFixed(2)}`;
+  window.open(
+    `https://wa.me/5591985144347?text=${msg}`,
+    "_blank"
+  );
+}
+atualizarCarrinho();
