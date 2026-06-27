@@ -72,7 +72,29 @@
 <script src="script.js"></script>
 
 </body>
-  
+  <div id="carrinho-btn" onclick="abrirCarrinho()">
+  🛒 <span id="contador">0</span>
+</div>
+
+<div id="carrinho-lateral" class="carrinho">
+
+  <h2>🛒 Carrinho</h2>
+
+  <div id="itens-carrinho"></div>
+
+  <p id="total"></p>
+
+  <button onclick="enviarCarrinhoWhatsApp()">
+    📲 Finalizar compra
+  </button>
+
+  <button onclick="fecharCarrinho()">Fechar</button>
+
+</div>
+
+<div id="whatsapp-btn" onclick="enviarCarrinhoWhatsApp()">
+  📲
+</div>
   <!-- CARRINHO BTN -->
 <div id="carrinho-btn" onclick="abrirCarrinho()">
   🛒 <span id="contador">0</span>
