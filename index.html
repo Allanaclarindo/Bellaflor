@@ -22,16 +22,7 @@
 <div id="modal" class="modal">
   <div class="modal-conteudo">
     <h3 id="modal-nome"></h3>
-    <div id="modal-imagens"></div>
-
-    <label>Cor</label>
-    <select id="cor"></select>
-
-    <label>Tamanho</label>
-    <select id="tamanho"></select>
-
-    <button onclick="adicionarDoModal()">adicionar ao Carrinho</button>
-    <button onclick="fecharModal()">Fechar</button>
+     <button onclick="fecharModal()">Fechar</button>
   </div>
 </div>
 
@@ -63,13 +54,6 @@
     padding:10px;
     border-radius:50%;
   ">✕</button>
-
-</div>
-<div id="carrinho-btn" onclick="abrirCarrinho()">
-  🛒 <span id="contador">0</span>
-</div>
-<!-- ⚠️ SCRIPT SEMPRE POR ÚLTIMO -->
-<script src="script.js"></script>
 
 </body>
   <div id="carrinho-btn" onclick="abrirCarrinho()">
@@ -121,17 +105,6 @@
   <button onclick="fecharCarrinho()">Fechar</button>
 
 </div>
-  <!-- CARRINHO LATERAL -->
-<div id="carrinho-lateral" class="carrinho">
-
-  <h2>Carrinho</h2>
-
-  <span id="contador"></span>
-
-  <div id="itens-carrinho"></div>
-
-  <p id="total"></p>
-
   <button onclick="enviarCarrinhoWhatsApp()" style="
     background:#25D366;
     color:write;
