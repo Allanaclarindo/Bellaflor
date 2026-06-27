@@ -102,7 +102,7 @@ footer {
   cursor: pointer;
 
   box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  z-index: 1000;
+  z-index: 99999;
 }
 
 /* CONTADOR DO CARRINHO */
