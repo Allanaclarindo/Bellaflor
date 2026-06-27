@@ -2,6 +2,8 @@ let produtos = [];
 let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
 let produtoSelecionado = null;
 
+let frete = 0;
+
 const lista = document.getElementById("lista-produtos");
 
 /* ================= PRODUTOS ================= */
@@ -142,15 +144,20 @@ function fecharCarrinho() {
   document.getElementById("carrinho-lateral").classList.remove("ativo");
 }
 
+/* ================= FRETE ================= */
+function calcularFrete() {
+  frete = 10.00; // Belém fixo
+}
+
 /* ================= ATUALIZAR ================= */
 function atualizarCarrinho() {
   const box = document.getElementById("itens-carrinho");
   box.innerHTML = "";
 
-  let total = 0;
+  let subtotal = 0;
 
   carrinho.forEach((item, i) => {
-    total += item.preco * item.quantidade;
+    subtotal += item.preco * item.quantidade;
 
     box.innerHTML += `
       <div class="item-carrinho">
@@ -168,27 +175,36 @@ function atualizarCarrinho() {
     `;
   });
 
+  calcularFrete();
+
+  let totalFinal = subtotal + frete;
+
   document.getElementById("total").innerText =
-    "Total: R$ " + total.toFixed(2);
+    `Subtotal: R$ ${subtotal.toFixed(2)} | Frete: R$ ${frete.toFixed(2)} | Total: R$ ${totalFinal.toFixed(2)}`;
 
   document.getElementById("contador").innerText = carrinho.length;
 
   localStorage.setItem("carrinho", JSON.stringify(carrinho));
 }
 
-/* ================= WHATSAPP FINAL ================= */
+/* ================= WHATSAPP ================= */
 function enviarCarrinhoWhatsApp() {
   if (carrinho.length === 0) return;
 
   let msg = "🛍 PEDIDO:%0A%0A";
-  let total = 0;
+  let subtotal = 0;
 
   carrinho.forEach(p => {
     msg += `- ${p.nome} | ${p.cor} | ${p.tamanho} x${p.quantidade} = R$ ${p.preco}%0A`;
-    total += p.preco * p.quantidade;
+    subtotal += p.preco * p.quantidade;
   });
 
-  msg += `%0A💰 TOTAL: R$ ${total.toFixed(2)}`;
+  calcularFrete();
+
+  let totalFinal = subtotal + frete;
+
+  msg += `%0A🚚 Frete: R$ ${frete.toFixed(2)}`;
+  msg += `%0A💰 TOTAL FINAL: R$ ${totalFinal.toFixed(2)}`;
 
   window.open(`https://wa.me/5591985144347?text=${msg}`, "_blank");
-}
+      }
