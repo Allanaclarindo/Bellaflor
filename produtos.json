@@ -214,7 +214,7 @@
     "nome": "Jaqueta Corta Vento",
     "preco": "R$ 59,99",
     "valor": 59.99,
-    "imagem": "imagens/jaqueta-corta- vento.jpg",
+    "imagem": "imagens/jaqueta-corta-vento.jpg",
     "cores": "Roxo, Branco, Preto, Azul",
     "tamanhos": "P, M, G"
   },
@@ -225,7 +225,7 @@
     "imagens": [ 
      "imagens/cropped-coração.jpg",
       "imagens/cropped-coração2.jpg"
-    ],
+    ]
     "cores": "Azul, Amarelo",
     "tamanhos": "P, M, G"
   
