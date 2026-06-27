@@ -229,5 +229,29 @@
     "cores": "Azul, Amarelo",
     "tamanhos": "P, M, G"
   
+  },
+  {
+  "nome": "Top Poliamida",
+    "preco": "R$ 34,90",
+    "valor": 34.90,
+    "imagem": "imagens/top-poliamida.jpg",
+    "cores": "Lilás, Rosa, Amarelo",
+    "tamanhos": "P, M, G"
+    },
+   {
+    "nome": "Blusa Canelada",
+    "preco": "R$ 54,90",
+    "valor": 54.90,
+    "imagem": "imagens/blusa-gringa-canelada.jpg",
+    "cores": "Rosa, Azul, Preto",
+    "tamanhos": "P, M, G"
+    },
+  {
+    "nome": "Short Canelado",
+    "preco": "R$ 54,90",
+    "valor": 54.90,
+    "imagem": "imagens/short-canelado.jpg",
+    "cores": "Lilás, Azul, Verde, Cinza",
+    "tamanhos": "P, M, G"
   }
 ]
