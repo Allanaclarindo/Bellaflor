@@ -22,7 +22,7 @@ function renderizarProdutos() {
   lista.innerHTML = "";
 
   produtos.forEach((p, index) => {
-    let img = p.imagens || [p.imagem];
+    const img = p.imagens || [p.imagem];
 
     lista.innerHTML += `
       <div class="produto">
@@ -31,14 +31,14 @@ function renderizarProdutos() {
         <p>${p.preco}</p>
 
         <button onclick="abrirModal(${index})">Comprar</button>
-        <button onclick="adicionarAoCarrinho(${index})">Adicionar ao carrinho</button>
+        <button onclick="adicionarAoCarrinho(${index})">Adicionar</button>
       </div>
     `;
   });
 }
 
 /* =========================
-   MODAL PRODUTO
+   MODAL
 ========================= */
 function abrirModal(index) {
   produtoSelecionado = produtos[index];
@@ -51,23 +51,23 @@ function abrirModal(index) {
   document.getElementById("modal-imagens").innerHTML = `
     <img id="img-principal" src="${imagens[0]}" style="width:100%">
 
-    <label>Cor:</label>
+    <label>Cor</label>
     <select id="cor"></select>
 
-    <label>Tamanho:</label>
+    <label>Tamanho</label>
     <select id="tamanho">
-      <option value="P">P</option>
-      <option value="M">M</option>
-      <option value="G">G</option>
+      <option>P</option>
+      <option>M</option>
+      <option>G</option>
     </select>
+
+    <button onclick="adicionarDoModal()">Adicionar ao carrinho</button>
 
     <div style="display:flex; gap:10px; margin-top:10px;">
       ${imagens.map(img => `
         <img src="${img}" onclick="trocarImagem('${img}')" style="width:60px; cursor:pointer">
       `).join("")}
     </div>
-
-    <button onclick="adicionarDoModal()">Adicionar ao carrinho</button>
   `;
 
   setTimeout(() => {
@@ -107,7 +107,6 @@ function adicionarAoCarrinho(index) {
   });
 
   atualizarCarrinho();
-  abrirCarrinho();
 }
 
 function adicionarDoModal() {
@@ -123,20 +122,45 @@ function adicionarDoModal() {
   });
 
   atualizarCarrinho();
-  abrirCarrinho();
 }
 
 /* =========================
-   CARRINHO LATERAL
+   ATUALIZAR CARRINHO
 ========================= */
-function abrirCarrinho() {
-  document.getElementById("carrinho-lateral").classList.add("ativo");
+function atualizarCarrinho() {
+  const box = document.getElementById("itens-carrinho");
+  box.innerHTML = "";
+
+  let total = 0;
+
+  carrinho.forEach((item, i) => {
+    total += item.preco * item.quantidade;
+
+    box.innerHTML += `
+      <div style="border-bottom:1px solid #ddd; padding:10px;">
+        <b>${item.nome}</b><br>
+        Cor: ${item.cor}<br>
+        Tamanho: ${item.tamanho}<br>
+        R$ ${item.preco.toFixed(2)}<br>
+
+        <button onclick="diminuir(${i})">-</button>
+        ${item.quantidade}
+        <button onclick="aumentar(${i})">+</button>
+
+        <button onclick="remover(${i})">Remover</button>
+      </div>
+    `;
+  });
+
+  document.getElementById("total").innerText = "Total: R$ " + total.toFixed(2);
+  document.getElementById("contador").innerText = carrinho.length;
+
+  localStorage.setItem("carrinho", JSON.stringify(carrinho));
 }
 
-function fecharCarrinho() {
-  document.getElementById("carrinho-lateral").classList.remove("ativo");
-}
-
+/* =========================
+   CONTROLES
+========================= */
 function aumentar(i) {
   carrinho[i].quantidade++;
   atualizarCarrinho();
@@ -155,49 +179,10 @@ function remover(i) {
 }
 
 /* =========================
-   ATUALIZAR CARRINHO
-========================= */
-function atualizarCarrinho() {
-  const box = document.getElementById("itens-carrinho");
-  box.innerHTML = "";
-
-  let total = 0;
-
-  carrinho.forEach((item, i) => {
-    total += item.preco * item.quantidade;
-
-    box.innerHTML += `
-      <div style="border-bottom:1px solid #ccc; padding:10px;">
-        <b>${item.nome}</b><br>
-        Cor: ${item.cor}<br>
-        Tamanho: ${item.tamanho}<br>
-        R$ ${item.preco.toFixed(2)}<br>
-
-        <button onclick="diminuir(${i})">-</button>
-        ${item.quantidade}
-        <button onclick="aumentar(${i})">+</button>
-
-        <button onclick="remover(${i})">Remover</button>
-      </div>
-    `;
-  });
-
-  document.getElementById("total").innerText =
-    "Total: R$ " + total.toFixed(2);
-
-  document.getElementById("contador").innerText = carrinho.length;
-
-  localStorage.setItem("carrinho", JSON.stringify(carrinho));
-}
-
-/* =========================
-   WHATSAPP FINAL
+   WHATSAPP
 ========================= */
 function enviarCarrinhoWhatsApp() {
-  if (carrinho.length === 0) {
-    alert("Carrinho vazio!");
-    return;
-  }
+  if (carrinho.length === 0) return;
 
   let msg = "🛍 PEDIDO:%0A%0A";
   let total = 0;
@@ -209,8 +194,16 @@ function enviarCarrinhoWhatsApp() {
 
   msg += `%0A💰 TOTAL: R$ ${total.toFixed(2)}`;
 
-  window.open(
-    `https://wa.me/5599999999999?text=${msg}`,
-    "_blank"
-  );
+  window.open(`https://wa.me/5591985144347?text=${msg}`, "_blank");
+}
+
+/* =========================
+   CARRINHO ABRIR/FECHAR
+========================= */
+function abrirCarrinho() {
+  document.getElementById("carrinho-lateral").classList.add("ativo");
+}
+
+function fecharCarrinho() {
+  document.getElementById("carrinho-lateral").classList.remove("ativo");
 }
