@@ -166,7 +166,7 @@
     "nome": "Short-hadcore Poliamida",
     "preco": "R$ 64,90",
     "valor": 64.90,
-    "imagem": "imagens/short-hadcore-cosalto-poliamida.zip",
+    "imagem": "imagens/short-hadcore-cosalto-poliamida.jpg",
     "cores": "Lilás, Branco",
     "tamanhos": "P, M, G"
   },
@@ -174,7 +174,7 @@
     "nome": "Short duplo Adidas",
     "preco": "R$ 45,90",
     "valor": 45.90,
-    "imagem": "imagens/short-duplo-adidas.zip",
+    "imagem": "imagens/short-duplo-adidas.jpg",
     "cores": "Lilás, Rosa, Amarelo, Verde",
     "tamanhos": "P, M, G"
     },
@@ -182,7 +182,7 @@
     "nome": "Regata duda",
     "preco": "R$ 34,90",
     "valor": 34.90,
-    "imagem": "imagens/regata-duda.zip",
+    "imagem": "imagens/regata-duda.jpg",
     "cores": "Lilás, Rosa, Amarelo",
     "tamanhos": "P, M, G"
     },
@@ -190,7 +190,7 @@
     "nome": "Macaquinho Mel",
     "preco": "R$ 64,90",
     "valor": 64.90,
-    "imagem": "imagens/macaquinho-mel.zip",
+    "imagem": "imagens/macaquinho-mel.jpg",
     "cores": "Rosa, Azul, Preto",
     "tamanhos": "P, M, G"
     },
@@ -198,7 +198,7 @@
     "nome": "Macaquinho Hanna",
     "preco": "R$ 64,90",
     "valor": 64.90,
-    "imagem": "imagens/macaquinho-hanna.zip",
+    "imagem": "imagens/macaquinho-hanna.jpg",
     "cores": "Lilás, Azul, Verde, Cinza",
     "tamanhos": "P, M, G"
   },
@@ -206,7 +206,7 @@
     "nome": "Jaqueta UV Poliamida 50 FPS",
     "preco": "R$ 65,00",
     "valor": 65.00,
-    "imagem": "imagens/jaqueta-uv-poliamida.zip",
+    "imagem": "imagens/jaqueta-uv-poliamida.jpg",
     "cores": "Lilás, Branco, Azul, Preto",
     "tamanhos": "P, M, G"
   },
@@ -214,7 +214,7 @@
     "nome": "Jaqueta Corta Vento",
     "preco": "R$ 59,99",
     "valor": 59.99,
-    "imagem": "imagens/jaqueta-corta- vento.zip",
+    "imagem": "imagens/jaqueta-corta- vento.jpg",
     "cores": "Roxo, Branco, Preto, Azul",
     "tamanhos": "P, M, G"
   },
@@ -223,8 +223,8 @@
     "preco": "R$ 78,99",
     "valor": 78.99,
     "imagens": [ 
-     "imagens/cropped-coração.zip",
-      "imagens/cropped-coração2.zip"
+     "imagens/cropped-coração.jpg",
+      "imagens/cropped-coração2.jpg"
     ],
     "cores": "Azul, Amarelo",
     "tamanhos": "P, M, G"
