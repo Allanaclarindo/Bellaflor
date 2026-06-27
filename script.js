@@ -4,9 +4,7 @@ let produtoSelecionado = null;
 
 const lista = document.getElementById("lista-produtos");
 
-/* =========================
-   CARREGAR PRODUTOS
-========================= */
+/* ================= PRODUTOS ================= */
 fetch("produtos.json")
   .then(res => res.json())
   .then(data => {
@@ -15,14 +13,11 @@ fetch("produtos.json")
     atualizarCarrinho();
   });
 
-/* =========================
-   VITRINE
-========================= */
 function renderizarProdutos() {
   lista.innerHTML = "";
 
   produtos.forEach((p, index) => {
-    const img = p.imagens || [p.imagem];
+    let img = p.imagens || [p.imagem];
 
     lista.innerHTML += `
       <div class="produto">
@@ -37,9 +32,7 @@ function renderizarProdutos() {
   });
 }
 
-/* =========================
-   MODAL
-========================= */
+/* ================= MODAL ================= */
 function abrirModal(index) {
   produtoSelecionado = produtos[index];
 
@@ -92,9 +85,7 @@ function fecharModal() {
   document.getElementById("modal").style.display = "none";
 }
 
-/* =========================
-   CARRINHO
-========================= */
+/* ================= CARRINHO ================= */
 function adicionarAoCarrinho(index) {
   const p = produtos[index];
 
@@ -124,43 +115,7 @@ function adicionarDoModal() {
   atualizarCarrinho();
 }
 
-/* =========================
-   ATUALIZAR CARRINHO
-========================= */
-function atualizarCarrinho() {
-  const box = document.getElementById("itens-carrinho");
-  box.innerHTML = "";
-
-  let total = 0;
-
-  carrinho.forEach((item, i) => {
-    total += item.preco * item.quantidade;
-
-    box.innerHTML += `
-      <div style="border-bottom:1px solid #ddd; padding:10px;">
-        <b>${item.nome}</b><br>
-        Cor: ${item.cor}<br>
-        Tamanho: ${item.tamanho}<br>
-        R$ ${item.preco.toFixed(2)}<br>
-
-        <button onclick="diminuir(${i})">-</button>
-        ${item.quantidade}
-        <button onclick="aumentar(${i})">+</button>
-
-        <button onclick="remover(${i})">Remover</button>
-      </div>
-    `;
-  });
-
-  document.getElementById("total").innerText = "Total: R$ " + total.toFixed(2);
-  document.getElementById("contador").innerText = carrinho.length;
-
-  localStorage.setItem("carrinho", JSON.stringify(carrinho));
-}
-
-/* =========================
-   CONTROLES
-========================= */
+/* ================= CONTROLES ================= */
 function aumentar(i) {
   carrinho[i].quantidade++;
   atualizarCarrinho();
@@ -178,9 +133,50 @@ function remover(i) {
   atualizarCarrinho();
 }
 
-/* =========================
-   WHATSAPP
-========================= */
+/* ================= CARRINHO UI ================= */
+function abrirCarrinho() {
+  document.getElementById("carrinho-lateral").classList.add("ativo");
+}
+
+function fecharCarrinho() {
+  document.getElementById("carrinho-lateral").classList.remove("ativo");
+}
+
+/* ================= ATUALIZAR ================= */
+function atualizarCarrinho() {
+  const box = document.getElementById("itens-carrinho");
+  box.innerHTML = "";
+
+  let total = 0;
+
+  carrinho.forEach((item, i) => {
+    total += item.preco * item.quantidade;
+
+    box.innerHTML += `
+      <div class="item-carrinho">
+        <b>${item.nome}</b><br>
+        Cor: ${item.cor}<br>
+        Tamanho: ${item.tamanho}<br>
+        R$ ${item.preco.toFixed(2)}<br>
+
+        <button onclick="diminuir(${i})">-</button>
+        ${item.quantidade}
+        <button onclick="aumentar(${i})">+</button>
+
+        <button onclick="remover(${i})">X</button>
+      </div>
+    `;
+  });
+
+  document.getElementById("total").innerText =
+    "Total: R$ " + total.toFixed(2);
+
+  document.getElementById("contador").innerText = carrinho.length;
+
+  localStorage.setItem("carrinho", JSON.stringify(carrinho));
+}
+
+/* ================= WHATSAPP FINAL ================= */
 function enviarCarrinhoWhatsApp() {
   if (carrinho.length === 0) return;
 
@@ -195,15 +191,4 @@ function enviarCarrinhoWhatsApp() {
   msg += `%0A💰 TOTAL: R$ ${total.toFixed(2)}`;
 
   window.open(`https://wa.me/5591985144347?text=${msg}`, "_blank");
-}
-
-/* =========================
-   CARRINHO ABRIR/FECHAR
-========================= */
-function abrirCarrinho() {
-  document.getElementById("carrinho-lateral").classList.add("ativo");
-}
-
-function fecharCarrinho() {
-  document.getElementById("carrinho-lateral").classList.remove("ativo");
 }
