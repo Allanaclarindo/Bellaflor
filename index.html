@@ -1,85 +1,86 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bella Flor | Moda Feminina</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bella Flor | Moda Feminina</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
 
-  <!-- ========== HEADER COM CARRINHO ========== -->
-  <header>
-    <div class="header-topo">
-      <div>
-        <h1>🌸 Bella Flor</h1>
+    <header>
+        <h1>Bella Flor</h1>
         <p>Moda Feminina</p>
-      </div>
-      <div class="header-carrinho" onclick="abrirCarrinho()">
-        🛒 <span id="contador">0</span>
-      </div>
+    </header>
+
+    <div id="carrinho-btn" class="icone-carrinho-topo" onclick="abrirCarrinho()">
+        <i class="fas fa-shopping-cart"></i>
+        <span id="contador">0</span>
     </div>
-  </header>
 
-  <!-- ========== BUSCA ========== -->
-  <div class="busca-container">
-    <input type="text" id="buscar" placeholder="🔍 Buscar produtos..." onkeyup="buscarProdutos()">
-  </div>
+    <section class="busca-filtros">
+        <div class="busca">
+            <input type="text" id="buscar" onkeyup="buscarProdutos()" placeholder="🔍 Buscar produtos...">
+        </div>
+        
+        <div class="filtros">
+            <button onclick="filtrarCategoria('Todos')">Todos</button>
+            <button onclick="filtrarCategoria('Vestidos')">Vestidos</button>
+            <button onclick="filtrarCategoria('Conjuntos')">Conjuntos</button>
+            <button onclick="filtrarCategoria('Tops')">Tops</button>
+            <button onclick="filtrarCategoria('Shorts')">Shorts</button>
+            <button onclick="filtrarCategoria('Blusas')">Blusas</button>
+            <button onclick="filtrarCategoria('Macaquinhos')">Macaquinhos</button>
+            <button onclick="filtrarCategoria('jaquetas')">Jaquetas</button>
+        </div>
+    </section>
 
-  <!-- ========== FILTROS ========== -->
-  <div class="filtros">
-    <button onclick="filtrarCategoria('Todos')" class="filtro-btn ativo">Todos</button>
-    <button onclick="filtrarCategoria('Vestidos')" class="filtro-btn">Vestidos</button>
-    <button onclick="filtrarCategoria('Conjuntos')" class="filtro-btn">Conjuntos</button>
-    <button onclick="filtrarCategoria('Tops')" class="filtro-btn">Tops</button>
-    <button onclick="filtrarCategoria('Shorts')" class="filtro-btn">Shorts</button>
-    <button onclick="filtrarCategoria('Blusas')" class="filtro-btn">Blusas</button>
-    <button onclick="filtrarCategoria('Macaquinhos')" class="filtro-btn">Macaquinhos</button>
-    <button onclick="filtrarCategoria('jaquetas')" class="filtro-btn">Jaquetas</button>
-  </div>
+    <main>
+        <section id="produtos">
+            <h2>Catálogo</h2>
+            <div id="lista-produtos" class="produtos"></div>
+        </section>
+    </main>
 
-  <!-- ========== CATÁLOGO ========== -->
-  <section id="produtos">
-    <h2>🛍️ Catálogo</h2>
-    <div class="produtos" id="lista-produtos"></div>
-  </section>
-
-  <!-- ========== FRETE (discreto) ========== -->
-  <div class="frete-discreto">
-    <span>📦 Frete: </span>
-    <input type="text" id="cep-frete" placeholder="Digite seu CEP" maxlength="9">
-    <button onclick="calcularFretePorCEP()">Calcular</button>
-    <span id="frete-info"></span>
-  </div>
-
-  <!-- ========== WHATSAPP FLUTUANTE ========== -->
-  <a href="https://wa.me/5591985144347" target="_blank" class="whatsapp-flutuante">
-    <img src="imagens/whatsap.png" alt="WhatsApp">
-  </a>
-
-  <!-- ========== MODAL ========== -->
-  <div id="modal" class="modal">
-    <div class="modal-conteudo">
-      <h3 id="modal-nome"></h3>
-      <div id="modal-imagens"></div>
-      <button onclick="fecharModal()" class="btn-fechar-modal">Fechar</button>
+    <!-- ===== FRETE POR CEP ===== -->
+    <div class="frete-area">
+        <span>📦 Frete:</span>
+        <input type="text" id="cep-frete" placeholder="Digite seu CEP" maxlength="9">
+        <button onclick="calcularFretePorCEP()">Calcular</button>
+        <span id="frete-info"></span>
     </div>
-  </div>
 
-  <!-- ========== CARRINHO LATERAL ========== -->
-  <div id="carrinho-lateral" class="carrinho">
-    <h2>🛒 Carrinho</h2>
-    <div id="itens-carrinho"></div>
-    <div id="total"></div>
-    <button onclick="enviarCarrinhoWhatsApp()" class="btn-whatsapp-carrinho">
-      💬 Finalizar compra
-    </button>
-    <button onclick="fecharCarrinho()" class="btn-fechar">Fechar</button>
-  </div>
+    <div id="carrinho-lateral" class="carrinho">
+        <div class="carrinho-header">
+            <h3>🛒 Seu Carrinho</h3>
+            <button onclick="fecharCarrinho()" class="btn-fechar">Fechar X</button>
+        </div>
+        <div id="itens-carrinho"></div>
+        <div id="total">
+            <b>Subtotal:</b> R$ 0,00<br>
+            <b>Frete:</b> R$ 0,00<br>
+            <b>Total:</b> R$ 0,00
+        </div>
+        <button onclick="enviarCarrinhoWhatsApp()" class="btn-finalizar">
+            <i class="fab fa-whatsapp"></i> Finalizar Pedido via WhatsApp
+        </button>
+    </div>
 
-  <!-- ========== SCRIPTS ========== -->
-  <script src="cep.js"></script>
-  <script src="script.js"></script>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span onclick="fecharModal()" class="fechar-modal">&times;</span>
+            <h2 id="modal-nome">Nome do Produto</h2>
+            <div id="modal-imagens">
+                </div>
+        </div>
+    </div>
 
+    <a href="https://wa.me/5591985144347" target="_blank" class="icone-whatsapp-fixo">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="cep.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
