@@ -1,60 +1,489 @@
 /* ==========================
-   FAVORITOS E FRETE
+   BELLA FLOR - ESTILO LIMPO
 ========================== */
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+  background: #faf8ff;
+  color: #333;
+}
+
+/* ===== HEADER ===== */
+header {
+  background: linear-gradient(135deg, #dccbff, #b08aff);
+  color: #fff;
+  text-align: center;
+  padding: 35px 20px 30px;
+  box-shadow: 0 2px 15px rgba(123, 92, 255, 0.2);
+}
+
+header h1 {
+  font-size: 36px;
+  letter-spacing: 2px;
+}
+
+header p {
+  font-size: 17px;
+  opacity: 0.9;
+  margin-top: 4px;
+}
+
+/* ===== BUSCA ===== */
+.busca-container {
+  max-width: 500px;
+  margin: 20px auto 0;
+  padding: 0 20px;
+}
+
+.busca-container input {
+  width: 100%;
+  padding: 14px 20px;
+  border: 2px solid #eee;
+  border-radius: 30px;
+  font-size: 15px;
+  outline: none;
+  transition: 0.3s;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.busca-container input:focus {
+  border-color: #b08aff;
+  box-shadow: 0 2px 12px rgba(123, 92, 255, 0.12);
+}
+
+/* ===== FILTROS ===== */
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  padding: 18px 20px 10px;
+}
+
+.filtro-btn {
+  padding: 8px 20px;
+  border: 2px solid #eee;
+  border-radius: 25px;
+  background: #fff;
+  color: #666;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.filtro-btn:hover {
+  background: #f5f0ff;
+  border-color: #dccbff;
+}
+
+.filtro-btn.ativo {
+  background: #7B5CFF;
+  color: #fff;
+  border-color: #7B5CFF;
+}
+
+/* ===== CATÁLOGO ===== */
+section {
+  padding: 10px 25px 30px;
+}
+
+#produtos h2 {
+  text-align: center;
+  color: #7B5CFF;
+  margin: 20px 0 25px;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+/* ===== GRID ===== */
+.produtos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 25px;
+}
+
+/* ===== CARD ===== */
+.produto {
+  background: #fff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+  transition: 0.35s ease;
+  padding: 14px;
+  border: 1px solid #f5f0ff;
+}
+
+.produto:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 30px rgba(123, 92, 255, 0.12);
+}
+
+.produto img {
+  width: 100%;
+  height: 310px;
+  object-fit: cover;
+  border-radius: 14px;
+  cursor: pointer;
+}
+
+.produto h3 {
+  margin-top: 14px;
+  color: #4a2ba8;
+  font-size: 17px;
+}
+
+.produto p {
+  margin: 8px 0 12px;
+  color: #d4af37;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* ===== BOTÕES CARD ===== */
+.produto button {
+  width: 100%;
+  padding: 11px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 0.3s;
+  margin-top: 6px;
+}
+
+.produto button:first-of-type {
+  background: #b08aff;
+  color: #fff;
+}
+
+.produto button:first-of-type:hover {
+  background: #9a73f0;
+}
+
+.produto button:last-of-type {
+  background: #25d366;
+  color: #fff;
+}
+
+.produto button:last-of-type:hover {
+  background: #1ea952;
+}
+
+/* ===== FAVORITO ===== */
 .produto-favorito {
-    position: relative;
-    top: 0;
-    right: 0;
-    font-size: 24px;
-    cursor: pointer;
-    text-align: right;
-    padding: 5px 10px;
-    transition: 0.3s;
+  text-align: right;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 4px 8px 0 0;
+  transition: 0.3s;
+  user-select: none;
 }
 
 .produto-favorito:hover {
-    transform: scale(1.2);
+  transform: scale(1.15);
 }
 
-#filtro-ativo {
-    font-weight: bold;
-    color: #7B5CFF;
-    font-size: 16px;
+/* ===== FRETE MINI (cantinho) ===== */
+.frete-mini {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: flex-end;
+  padding: 8px 25px 5px;
+  font-size: 13px;
+  color: #888;
+  background: #faf8ff;
+  border-top: 1px solid #f0ebff;
 }
 
-/* CAMPOS DE FRETE */
-#cep-frete, #frete-manual {
-    font-size: 14px;
-    outline: none;
+.frete-mini input {
+  width: 85px;
+  padding: 4px 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 12px;
 }
 
-#cep-frete:focus, #frete-manual:focus {
-    border-color: #7B5CFF;
-    box-shadow: 0 0 0 3px rgba(123, 92, 255, 0.2);
+.frete-mini button {
+  padding: 4px 12px;
+  background: #7B5CFF;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.frete-mini button:hover {
+  background: #6a4ae0;
 }
 
 #frete-info {
-    min-height: 24px;
-    padding: 5px 0;
+  font-size: 12px;
+  color: #888;
+  margin-left: 4px;
 }
 
-/* BOTÃO DE LIMPAR FILTRO */
-button[onclick*="renderizarProdutos"] {
-    font-size: 14px;
-    padding: 5px 12px;
-    border-radius: 20px;
-    background: #f0ebff;
+/* ===== CARRINHO ===== */
+#carrinho-btn {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background: #7B5CFF;
+  color: #fff;
+  padding: 16px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 20px;
+  box-shadow: 0 6px 25px rgba(123, 92, 255, 0.35);
+  transition: 0.3s;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-button[onclick*="renderizarProdutos"]:hover {
-    background: #dccbff;
+#carrinho-btn:hover {
+  transform: scale(1.06);
 }
 
-/* RESPONSIVIDADE FRETE */
+#carrinho-btn #contador {
+  background: #fff;
+  color: #7B5CFF;
+  border-radius: 50%;
+  padding: 1px 10px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+/* ===== CARRINHO LATERAL ===== */
+.carrinho {
+  position: fixed;
+  top: 0;
+  right: -420px;
+  width: 380px;
+  max-width: 92%;
+  height: 100%;
+  background: #fff;
+  box-shadow: -6px 0 30px rgba(0, 0, 0, 0.1);
+  transition: 0.4s ease;
+  padding: 25px 20px;
+  overflow-y: auto;
+  z-index: 200;
+}
+
+.carrinho.ativo {
+  right: 0;
+}
+
+.carrinho h2 {
+  color: #7B5CFF;
+  border-bottom: 2px solid #f0ebff;
+  padding-bottom: 15px;
+  margin-bottom: 18px;
+  font-size: 22px;
+}
+
+.item-carrinho {
+  background: #faf8ff;
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 12px;
+  border: 1px solid #f0ebff;
+  font-size: 14px;
+}
+
+.item-carrinho button {
+  background: #f0ebff;
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  margin: 0 3px;
+}
+
+.item-carrinho button:hover {
+  background: #dccbff;
+}
+
+.carrinho #total {
+  background: #f8f5ff;
+  padding: 14px;
+  border-radius: 12px;
+  margin: 15px 0;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.btn-whatsapp {
+  width: 100%;
+  padding: 14px;
+  background: #25d366;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-whatsapp:hover {
+  background: #1ea952;
+}
+
+.btn-fechar {
+  width: 100%;
+  padding: 12px;
+  background: #f0ebff;
+  color: #555;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.btn-fechar:hover {
+  background: #e0d7f5;
+}
+
+/* ===== MODAL ===== */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 300;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(3px);
+}
+
+.modal-conteudo {
+  background: #fff;
+  padding: 28px;
+  border-radius: 24px;
+  max-width: 480px;
+  width: 92%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-conteudo h3 {
+  color: #7B5CFF;
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+.modal-conteudo label {
+  display: block;
+  margin: 12px 0 4px;
+  font-weight: 600;
+  color: #555;
+  font-size: 14px;
+}
+
+.modal-conteudo select {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #e8dfff;
+  border-radius: 10px;
+  font-size: 14px;
+  outline: none;
+  background: #fff;
+}
+
+.modal-conteudo select:focus {
+  border-color: #7B5CFF;
+}
+
+.modal-conteudo button {
+  width: 100%;
+  padding: 13px;
+  background: #7B5CFF;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 14px;
+  transition: 0.3s;
+}
+
+.modal-conteudo button:hover {
+  background: #6a4ae0;
+}
+
+.btn-fechar-modal {
+  background: #f0ebff !important;
+  color: #555 !important;
+}
+
+.btn-fechar-modal:hover {
+  background: #e0d7f5 !important;
+}
+
+/* ===== RESPONSIVO ===== */
 @media (max-width: 600px) {
-    #cep-frete, #frete-manual {
-        width: 100% !important;
-        min-width: unset !important;
-    }
+  header h1 {
+    font-size: 28px;
+  }
+
+  .produtos {
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .produto img {
+    height: 200px;
+  }
+
+  .filtros {
+    gap: 6px;
+  }
+
+  .filtro-btn {
+    padding: 6px 14px;
+    font-size: 12px;
+  }
+
+  .carrinho {
+    width: 100%;
+    right: -100%;
+  }
+
+  .frete-mini {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px;
+    padding: 6px 15px;
+  }
+
+  .frete-mini input {
+    width: 70px;
+  }
+}
+
+@media (max-width: 400px) {
+  .produtos {
+    grid-template-columns: 1fr;
+  }
 }
