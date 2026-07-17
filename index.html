@@ -1,214 +1,77 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Bella Flor | Moda Feminina</title>
-
-<link rel="stylesheet" href="style.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bella Flor | Moda Feminina</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<header>
-
-<h1>🌸 Bella Flor</h1>
-
-<p>Moda Feminina</p>
-
-</header>
-
-<!-- BANNER -->
-
-<section class="banner">
-
-<img src="imagens/banner-flores.jpg" alt="Bella Flor">
-
-<div class="banner-texto">
-
-<h2>Nova Coleção</h2>
-
-<p>Delicadeza, elegância e estilo.</p>
-
-</div>
-
-</section>
-
-<!-- PESQUISA -->
-
-<section class="pesquisa">
-
-<input
-
-type="text"
-
-id="pesquisa"
-
-placeholder="Pesquisar produtos..."
-
-onkeyup="pesquisarProdutos()">
-
-</section>
-
-<!-- BOTÕES -->
-
-<section class="menu-superior">
-
-<button onclick="mostrarTodos()">
-
-Todos
-
-</button>
-
-<button onclick="mostrarFavoritos()">
-
-❤️ Favoritos
-
-</button>
-
-</section>
-
-<!-- PRODUTOS -->
-
-<section id="produtos">
-
-<h2>Catálogo</h2>
-
-<div class="produtos" id="lista-produtos"></div>
-
-</section>
-
-<!-- MODAL -->
-
-<div id="modal" class="modal">
-
-<div class="modal-conteudo">
-
-<h3 id="modal-nome"></h3>
-
-<div id="modal-imagens"></div>
-
-<button onclick="fecharModal()">
-
-Fechar
-
-</button>
-
-</div>
-
-</div>
-
-<!-- IMAGEM TELA CHEIA -->
-
-<div id="modal-imagem-full">
-
-<img id="img-full">
-
-<div id="miniaturas"></div>
-
-<button onclick="fecharImagemFull()">
-
-✕
-
-</button>
-
-</div>
-
-<!-- BOTÃO CARRINHO -->
-
-<div id="carrinho-btn"
-
-onclick="abrirCarrinho()">
-
-🛒
-
-<span id="contador">
-
-0
-
-</span>
-
-</div>
-
-<!-- CARRINHO -->
-
-<div id="carrinho-lateral"
-
-class="carrinho">
-
-<h2>
-
-🛒 Carrinho
-
-</h2>
-
-<div id="itens-carrinho"></div>
-
-<!-- CEP -->
-
-<div class="frete-box">
-
-<input
-
-type="text"
-
-id="cep"
-
-placeholder="Digite seu CEP">
-
-<button onclick="calcularFrete()">
-
-Calcular Frete
-
-</button>
-
-<p id="resultado-frete"></p>
-
-</div>
-
-<p id="total"></p>
-
-<button
-
-onclick="enviarCarrinhoWhatsApp()">
-
-<img
-
-src="imagens/whatsap.png"
-
-width="30">
-
-Finalizar Compra
-
-</button>
-
-<button onclick="fecharCarrinho()">
-
-Fechar
-
-</button>
-
-</div>
-
-<!-- WHATSAPP -->
-
-<div
-
-id="whatsapp-btn"
-
-onclick="enviarCarrinhoWhatsApp()">
-
-📲
-
-</div>
-<script src="cep.js"></script>
-<script src="script.js"></script>
-<script src="script.js"></script>
+  <!-- ========== HEADER ========== -->
+  <header>
+    <h1>🌸 Bella Flor</h1>
+    <p>Moda Feminina</p>
+  </header>
+
+  <!-- ========== BUSCA ========== -->
+  <div class="busca-container">
+    <input type="text" id="buscar" placeholder="🔍 Buscar produtos..." onkeyup="buscarProdutos()">
+  </div>
+
+  <!-- ========== FILTROS ========== -->
+  <div class="filtros">
+    <button onclick="filtrarCategoria('Todos')" class="filtro-btn ativo">Todos</button>
+    <button onclick="filtrarCategoria('Vestidos')" class="filtro-btn">Vestidos</button>
+    <button onclick="filtrarCategoria('Conjuntos')" class="filtro-btn">Conjuntos</button>
+    <button onclick="filtrarCategoria('Tops')" class="filtro-btn">Tops</button>
+    <button onclick="filtrarCategoria('Shorts')" class="filtro-btn">Shorts</button>
+    <button onclick="filtrarCategoria('Blusas')" class="filtro-btn">Blusas</button>
+    <button onclick="filtrarCategoria('Macaquinhos')" class="filtro-btn">Macaquinhos</button>
+    <button onclick="filtrarCategoria('jaquetas')" class="filtro-btn">Jaquetas</button>
+  </div>
+
+  <!-- ========== CATÁLOGO ========== -->
+  <section id="produtos">
+    <h2>🛍️ Catálogo</h2>
+    <div class="produtos" id="lista-produtos"></div>
+  </section>
+
+  <!-- ========== FRETE (escondido num cantinho) ========== -->
+  <div class="frete-mini">
+    <span>📦 Frete: </span>
+    <input type="text" id="cep-frete" placeholder="CEP" maxlength="9" style="width:90px; padding:4px 8px; border:1px solid #ddd; border-radius:6px; font-size:12px;">
+    <button onclick="calcularFretePorCEP()" style="padding:4px 10px; background:#7B5CFF; color:#fff; border:none; border-radius:6px; cursor:pointer; font-size:12px;">OK</button>
+    <span id="frete-info" style="font-size:12px; color:#888;"></span>
+  </div>
+
+  <!-- ========== MODAL ========== -->
+  <div id="modal" class="modal">
+    <div class="modal-conteudo">
+      <h3 id="modal-nome"></h3>
+      <div id="modal-imagens"></div>
+      <button onclick="fecharModal()" class="btn-fechar-modal">Fechar</button>
+    </div>
+  </div>
+
+  <!-- ========== CARRINHO ========== -->
+  <div id="carrinho-btn" onclick="abrirCarrinho()">
+    🛒 <span id="contador">0</span>
+  </div>
+
+  <div id="carrinho-lateral" class="carrinho">
+    <h2>🛒 Carrinho</h2>
+    <div id="itens-carrinho"></div>
+    <div id="total"></div>
+    <button onclick="enviarCarrinhoWhatsApp()" class="btn-whatsapp">
+      💬 Finalizar compra
+    </button>
+    <button onclick="fecharCarrinho()" class="btn-fechar">Fechar</button>
+  </div>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script src="cep.js"></script>
+  <script src="script.js"></script>
 
 </body>
-
 </html>
