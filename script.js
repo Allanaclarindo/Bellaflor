@@ -1,12 +1,8 @@
-// ================= IMPORTAÇÕES =================
-// (o cep.js será carregado antes no HTML)
-
 let produtos = [];
 let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
 let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
 let produtoSelecionado = null;
 let frete = 0;
-let cepDigitado = '';
 let usuarioUF = '';
 
 const lista = document.getElementById("lista-produtos");
@@ -28,13 +24,16 @@ function renderizarProdutos(listaFiltrada = null) {
   produtosRender.forEach((p, index) => {
     const img = p.imagens || [p.imagem];
     const isFavorito = favoritos.some(f => f.nome === p.nome && f.valor === p.valor);
-    
+    const imgSrc = img[0] || '';
+
     lista.innerHTML += `
       <div class="produto" data-index="${index}">
-        <div class="produto-favorito" onclick="toggleFavorito(${index})" style="position:relative; top:0; right:0; font-size:24px; cursor:pointer; text-align:right;">
-          ${isFavorito ? '❤️' : '🤍'}
+        <div class="produto-imagem">
+          <img src="${imgSrc}" onclick="abrirModal(${index})">
+          <button class="btn-favorito" onclick="toggleFavorito(${index})" title="Favorito">
+            ${isFavorito ? '❤️' : '🤍'}
+          </button>
         </div>
-        <img src="${img[0]}" onclick="abrirModal(${index})">
         <h3>${p.nome}</h3>
         <p>${p.preco}</p>
         <button onclick="abrirModal(${index})">Comprar</button>
@@ -68,8 +67,7 @@ function toggleFavorito(index) {
 }
 
 function atualizarFavoritos() {
-  const contador = document.getElementById("favoritos-contador");
-  if (contador) contador.innerText = favoritos.length;
+  // Não precisa de contador visível, mas mantemos no localStorage
 }
 
 function abrirFavoritos() {
@@ -78,7 +76,6 @@ function abrirFavoritos() {
     return;
   }
   renderizarProdutos(favoritos);
-  document.getElementById("filtro-ativo").innerText = "⭐ Favoritos";
 }
 
 // ================= MODAL =================
@@ -189,7 +186,7 @@ function fecharCarrinho() {
 // ================= FRETE POR CEP =================
 async function calcularFretePorCEP() {
   const cepInput = document.getElementById("cep-frete");
-  cepDigitado = cepInput.value.replace(/\D/g, '');
+  const cepDigitado = cepInput.value.replace(/\D/g, '');
   
   if (cepDigitado.length !== 8) {
     alert("Digite um CEP válido com 8 números.");
@@ -202,7 +199,7 @@ async function calcularFretePorCEP() {
     frete = calcularFretePorUF(usuarioUF);
     
     document.getElementById("frete-info").innerHTML = `
-      ✅ Frete para ${dados.localidade}/${dados.uf}: R$ ${frete.toFixed(2)}
+      ✅ ${dados.localidade}/${dados.uf}: R$ ${frete.toFixed(2)}
     `;
     
     atualizarCarrinho();
@@ -211,12 +208,6 @@ async function calcularFretePorCEP() {
     frete = 0;
     document.getElementById("frete-info").innerHTML = "❌ CEP não encontrado";
   }
-}
-
-function aplicarFreteManual(valor) {
-  frete = parseFloat(valor) || 0;
-  document.getElementById("frete-info").innerHTML = `📦 Frete manual: R$ ${frete.toFixed(2)}`;
-  atualizarCarrinho();
 }
 
 // ================= ATUALIZAR CARRINHO =================
@@ -230,7 +221,7 @@ function atualizarCarrinho() {
     box.innerHTML += `
       <div class="item-carrinho">
         <div style="display:flex; align-items:center; gap:10px;">
-          ${item.imagem ? `<img src="${item.imagem}" style="width:50px; height:50px; object-fit:cover; border-radius:8px;">` : ''}
+          ${item.imagem ? `<img src="${item.imagem}" style="width:45px; height:45px; object-fit:cover; border-radius:8px;">` : ''}
           <div>
             <b>${item.nome}</b><br>
             Cor: ${item.cor}<br>
@@ -297,25 +288,30 @@ function buscarProdutos() {
   const termo = document.getElementById("buscar").value.toLowerCase();
   const filtrados = produtos.filter(p => 
     p.nome.toLowerCase().includes(termo) ||
-    p.categoria.toLowerCase().includes(termo)
+    (p.categoria && p.categoria.toLowerCase().includes(termo))
   );
   renderizarProdutos(filtrados);
-  document.getElementById("filtro-ativo").innerText = termo ? `🔍 "${termo}"` : "Todos";
 }
 
 function filtrarCategoria(categoria) {
+  const botoes = document.querySelectorAll('.filtro-btn');
+  botoes.forEach(btn => btn.classList.remove('ativo'));
+  
   if (categoria === 'Todos') {
     renderizarProdutos(produtos);
-    document.getElementById("filtro-ativo").innerText = "Todos";
+    document.querySelector('.filtro-btn:first-child').classList.add('ativo');
     return;
   }
+  
   const filtrados = produtos.filter(p => 
     p.categoria && p.categoria.toLowerCase() === categoria.toLowerCase()
   );
   renderizarProdutos(filtrados);
-  document.getElementById("filtro-ativo").innerText = categoria;
+  
+  botoes.forEach(btn => {
+    if (btn.textContent === categoria) btn.classList.add('ativo');
+  });
 }
 
 // ================= INICIALIZAÇÃO =================
 atualizarCarrinho();
-atualizarFavoritos();
