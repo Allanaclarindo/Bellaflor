@@ -8,10 +8,17 @@
 </head>
 <body>
 
-  <!-- ========== HEADER ========== -->
+  <!-- ========== HEADER COM CARRINHO ========== -->
   <header>
-    <h1>🌸 Bella Flor</h1>
-    <p>Moda Feminina</p>
+    <div class="header-topo">
+      <div>
+        <h1>🌸 Bella Flor</h1>
+        <p>Moda Feminina</p>
+      </div>
+      <div class="header-carrinho" onclick="abrirCarrinho()">
+        🛒 <span id="contador">0</span>
+      </div>
+    </div>
   </header>
 
   <!-- ========== BUSCA ========== -->
@@ -37,12 +44,22 @@
     <div class="produtos" id="lista-produtos"></div>
   </section>
 
-  <!-- ========== FRETE (escondido num cantinho) ========== -->
-  <div class="frete-mini">
-    <span>📦 Frete: </span>
-    <input type="text" id="cep-frete" placeholder="CEP" maxlength="9" style="width:90px; padding:4px 8px; border:1px solid #ddd; border-radius:6px; font-size:12px;">
-    <button onclick="calcularFretePorCEP()" style="padding:4px 10px; background:#7B5CFF; color:#fff; border:none; border-radius:6px; cursor:pointer; font-size:12px;">OK</button>
-    <span id="frete-info" style="font-size:12px; color:#888;"></span>
+  <!-- ========== FRETE (rodapé) ========== -->
+  <div class="frete-rodape">
+    <div class="frete-content">
+      <span>📦 Frete:</span>
+      <input type="text" id="cep-frete" placeholder="Digite seu CEP" maxlength="9">
+      <button onclick="calcularFretePorCEP()">Calcular</button>
+      <span id="frete-info"></span>
+    </div>
+  </div>
+
+  <!-- ========== WHATSAPP RODAPÉ ========== -->
+  <div class="whatsapp-rodape">
+    <a href="https://wa.me/5591985144347" target="_blank" class="btn-whatsapp-rodape">
+      <img src="imagens/whatsap.png" alt="WhatsApp" width="28">
+      Fale conosco no WhatsApp
+    </a>
   </div>
 
   <!-- ========== MODAL ========== -->
@@ -54,16 +71,12 @@
     </div>
   </div>
 
-  <!-- ========== CARRINHO ========== -->
-  <div id="carrinho-btn" onclick="abrirCarrinho()">
-    🛒 <span id="contador">0</span>
-  </div>
-
+  <!-- ========== CARRINHO LATERAL ========== -->
   <div id="carrinho-lateral" class="carrinho">
     <h2>🛒 Carrinho</h2>
     <div id="itens-carrinho"></div>
     <div id="total"></div>
-    <button onclick="enviarCarrinhoWhatsApp()" class="btn-whatsapp">
+    <button onclick="enviarCarrinhoWhatsApp()" class="btn-whatsapp-carrinho">
       💬 Finalizar compra
     </button>
     <button onclick="fecharCarrinho()" class="btn-fechar">Fechar</button>
