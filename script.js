@@ -1,4 +1,3 @@
-```javascript
 let produtos = [];
 let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
 let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
@@ -140,7 +139,6 @@ function fecharCarrinho() {
 }
 
 function calcularFrete() {
-  // Mantém o frete que foi calculado pelo CEP
   if (frete === undefined || frete === null) {
     frete = 0;
   }
@@ -237,16 +235,17 @@ function filtrarCategoria(categoria){
     .forEach((p,index)=>{
         let img=p.imagens || [p.imagem];
         const isFavorito = favoritos.some(f => f.nome === p.nome && f.valor === p.valor);
+        const originalIndex = produtos.indexOf(p);
         lista.innerHTML+=`
         <div class="produto">
-            <button class="btn-favorito ${isFavorito ? 'favoritado' : ''}" onclick="event.stopPropagation(); toggleFavorito(${produtos.indexOf(p)})">
+            <button class="btn-favorito ${isFavorito ? 'favoritado' : ''}" onclick="event.stopPropagation(); toggleFavorito(${originalIndex})">
                 ${isFavorito ? '❤️' : '🤍'}
             </button>
-            <img src="${img[0]}" onclick="abrirModal(${produtos.indexOf(p)})">
+            <img src="${img[0]}" onclick="abrirModal(${originalIndex})">
             <h3>${p.nome}</h3>
             <p>${p.preco}</p>
-            <button onclick="abrirModal(${produtos.indexOf(p)})">Comprar</button>
-            <button onclick="adicionarAoCarrinho(${produtos.indexOf(p)})">Adicionar</button>
+            <button onclick="abrirModal(${originalIndex})">Comprar</button>
+            <button onclick="adicionarAoCarrinho(${originalIndex})">Adicionar</button>
         </div>
         `;
     });
@@ -295,6 +294,3 @@ async function calcularFretePorCEP() {
     document.getElementById("frete-info").innerHTML = "❌ CEP não encontrado";
   }
 }
-```
-
----
