@@ -1,356 +1,60 @@
-/* ===========================
-   BELLA FLOR - STYLE.CSS
-   PARTE 1
-=========================== */
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
-}
-
-body{
-    background:#FDFBFF;
-    color:#444;
-}
-
-/* HEADER */
-
-header{
-    background:linear-gradient(135deg,#DCCBFF,#BFA2FF);
-    color:#fff;
-    text-align:center;
-    padding:25px;
-    box-shadow:0 2px 10px rgba(0,0,0,.15);
-}
-
-header h1{
-    font-size:38px;
-    letter-spacing:2px;
-}
-
-header p{
-    margin-top:8px;
-    font-size:18px;
-}
-
-/* ===========================
-   BANNER
-=========================== */
-
-.banner{
-    width:100%;
-    position:relative;
-    overflow:hidden;
-}
-
-.banner img{
-    width:100%;
-    height:380px;
-    object-fit:cover;
-    display:block;
-}
-
-.banner-texto{
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    text-align:center;
-    color:#fff;
-    background:rgba(0,0,0,.25);
-    padding:25px;
-    border-radius:18px;
-}
-
-.banner-texto h2{
-    font-size:42px;
-    margin-bottom:10px;
-}
-
-.banner-texto p{
-    font-size:20px;
-}
-
-/* ===========================
-   PESQUISA
-=========================== */
-
-.pesquisa{
-    padding:20px;
-    background:#fff;
-}
-
-.pesquisa input{
-    width:100%;
-    padding:15px;
-    border:2px solid #DCCBFF;
-    border-radius:12px;
-    outline:none;
-    font-size:16px;
-}
-
-.pesquisa input:focus{
-    border-color:#8B5CF6;
-}
-
-/* ===========================
-   MENU SUPERIOR
-=========================== */
-
-.menu-superior{
-    display:flex;
-    justify-content:center;
-    gap:15px;
-    padding:20px;
-}
-
-.menu-superior button{
-    padding:12px 22px;
-    border:none;
-    border-radius:30px;
-    background:#BFA2FF;
-    color:#fff;
-    cursor:pointer;
-    font-weight:bold;
-    transition:.3s;
-}
-
-.menu-superior button:hover{
-    background:#8B5CF6;
-}
-
-/* ===========================
-   CATÁLOGO
-=========================== */
-
-section{
-    padding:25px;
-}
-
-#produtos h2{
-    text-align:center;
-    color:#7B5CFF;
-    margin-bottom:25px;
-    font-size:32px;
-}
-
-/* GRID */
-
-.produtos{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    gap:25px;
-}
 /* ==========================
-   CARDS DOS PRODUTOS
+   FAVORITOS E FRETE
 ========================== */
 
-.produto{
-    position:relative;
-    background:#fff;
-    border-radius:18px;
-    overflow:hidden;
-    box-shadow:0 5px 18px rgba(0,0,0,.12);
-    transition:.3s;
-    padding:15px;
+.produto-favorito {
+    position: relative;
+    top: 0;
+    right: 0;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: right;
+    padding: 5px 10px;
+    transition: 0.3s;
 }
 
-.produto:hover{
-    transform:translateY(-6px);
-    box-shadow:0 10px 25px rgba(0,0,0,.18);
+.produto-favorito:hover {
+    transform: scale(1.2);
 }
 
-.produto img{
-    width:100%;
-    height:340px;
-    object-fit:cover;
-    border-radius:12px;
-    cursor:pointer;
+#filtro-ativo {
+    font-weight: bold;
+    color: #7B5CFF;
+    font-size: 16px;
 }
 
-.produto h3{
-    margin-top:15px;
-    color:#6E44FF;
-    font-size:20px;
+/* CAMPOS DE FRETE */
+#cep-frete, #frete-manual {
+    font-size: 14px;
+    outline: none;
 }
 
-.produto p{
-    margin:12px 0;
-    color:#D4AF37;
-    font-size:24px;
-    font-weight:bold;
+#cep-frete:focus, #frete-manual:focus {
+    border-color: #7B5CFF;
+    box-shadow: 0 0 0 3px rgba(123, 92, 255, 0.2);
 }
 
-/* ==========================
-   FAVORITOS
-========================== */
-
-.favorito{
-    position:absolute;
-    top:15px;
-    right:15px;
-    font-size:30px;
-    cursor:pointer;
-    transition:.3s;
-    user-select:none;
+#frete-info {
+    min-height: 24px;
+    padding: 5px 0;
 }
 
-.favorito:hover{
-    transform:scale(1.2);
+/* BOTÃO DE LIMPAR FILTRO */
+button[onclick*="renderizarProdutos"] {
+    font-size: 14px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    background: #f0ebff;
 }
 
-/* ==========================
-   BOTÕES
-========================== */
-
-.produto button{
-    width:100%;
-    padding:12px;
-    border:none;
-    border-radius:10px;
-    cursor:pointer;
-    font-size:15px;
-    font-weight:bold;
-    transition:.3s;
-    margin-top:8px;
+button[onclick*="renderizarProdutos"]:hover {
+    background: #dccbff;
 }
 
-.produto button:first-of-type{
-    background:#BFA2FF;
-    color:#fff;
-}
-
-.produto button:first-of-type:hover{
-    background:#A98CF8;
-}
-
-.produto button:last-of-type{
-    background:#25D366;
-    color:#fff;
-}
-
-.produto button:last-of-type:hover{
-    background:#1FB458;
-}
-
-/* ==========================
-   CARRINHO
-========================== */
-
-.carrinho{
-    position:fixed;
-    top:0;
-    right:-420px;
-    width:400px;
-    max-width:100%;
-    height:100%;
-    background:#fff;
-    box-shadow:-4px 0 20px rgba(0,0,0,.2);
-    padding:20px;
-    transition:.4s;
-    overflow-y:auto;
-    z-index:9999;
-}
-
-.carrinho.ativo{
-    right:0;
-}
-
-.item-carrinho{
-    background:#fafafa;
-    border-radius:10px;
-    padding:12px;
-    margin-bottom:15px;
-}
-
-.item-carrinho button{
-    margin:4px;
-    border:none;
-    border-radius:6px;
-    padding:6px 10px;
-    cursor:pointer;
-}
-
-/* ==========================
-   FRETE
-========================== */
-
-.frete-box{
-    margin:20px 0;
-}
-
-.frete-box input{
-    width:100%;
-    padding:12px;
-    border:1px solid #ccc;
-    border-radius:8px;
-    margin-bottom:10px;
-}
-
-.frete-box button{
-    width:100%;
-    padding:12px;
-    border:none;
-    border-radius:8px;
-    background:#8B5CF6;
-    color:#fff;
-    cursor:pointer;
-}
-
-.frete-box button:hover{
-    background:#6D28D9;
-}
-
-#resultado-frete{
-    margin-top:10px;
-    color:#444;
-    font-weight:bold;
-}
-
-/* ==========================
-   BOTÃO FLUTUANTE
-========================== */
-
-#carrinho-btn,
-#whatsapp-btn{
-    position:fixed;
-    width:60px;
-    height:60px;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-    color:#fff;
-    font-size:28px;
-    box-shadow:0 5px 15px rgba(0,0,0,.25);
-}
-
-#carrinho-btn{
-    right:20px;
-    bottom:95px;
-    background:#8B5CF6;
-}
-
-#whatsapp-btn{
-    right:20px;
-    bottom:20px;
-    background:#25D366;
-}
-
-#contador{
-    position:absolute;
-    top:-5px;
-    right:-5px;
-    background:red;
-    color:#fff;
-    width:22px;
-    height:22px;
-    border-radius:50%;
-    font-size:12px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+/* RESPONSIVIDADE FRETE */
+@media (max-width: 600px) {
+    #cep-frete, #frete-manual {
+        width: 100% !important;
+        min-width: unset !important;
+    }
 }
