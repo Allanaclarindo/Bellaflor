@@ -170,6 +170,22 @@ function fecharCarrinho() {
   document.getElementById("carrinho-lateral").classList.remove("ativo");
 }
 
+/* ================= MENU INFERIOR ================= */
+function irParaTopo() {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+function irParaCategorias() {
+  document.querySelector(".filtros").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+function irParaBusca() {
+  const campo = document.getElementById("buscar");
+  campo.scrollIntoView({ behavior: "smooth", block: "center" });
+  campo.focus();
+}
+function abrirWhatsappContato() {
+  window.open("https://wa.me/5591985144347", "_blank");
+}
+
 /* ================= FRETE ================= */
 function calcularFrete() {
   if (!freteCalculado) {
