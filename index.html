@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Bella Flor | Moda Feminina</title>
-  <link rel="stylesheet" href="style.css?v2">
+  <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
 <header>
@@ -36,6 +36,19 @@
 <button onclick="filtrarCategoria('Blusas')">Blusas</button>
 
   </div>
+<!-- MENU DE CATEGORIAS (deslizante) -->
+<div id="menu-categorias" class="menu-categorias">
+  <button class="menu-fechar" onclick="fecharMenuCategorias()">✕</button>
+  <ul class="menu-lista">
+    <li><button onclick="selecionarCategoriaMenu('Todos')">Todos</button></li>
+    <li><button onclick="selecionarCategoriaMenu('Vestidos')">Vestidos</button></li>
+    <li><button onclick="selecionarCategoriaMenu('Conjuntos')">Conjuntos</button></li>
+    <li><button onclick="selecionarCategoriaMenu('Tops')">Tops</button></li>
+    <li><button onclick="selecionarCategoriaMenu('Shorts')">Shorts</button></li>
+    <li><button onclick="selecionarCategoriaMenu('Blusas')">Blusas</button></li>
+  </ul>
+</div>
+
 <!-- MODAL DO PRODUTO -->
 <div id="modal" class="modal">
   <div class="modal-conteudo">
@@ -91,7 +104,8 @@
   </div>
 
   <p id="total"></p>
-  <button onclick="enviarCarrinhoWhatsApp()"> class="fa-brands fa-whatsapp' style=font-size:20px;"></i> Finalizar compra
+  <button onclick="enviarCarrinhoWhatsApp()">
+    <i class="fa-brands fa-whatsapp" style="font-size:20px;"></i> Finalizar compra
   </button>
   <button onclick="fecharCarrinho()">
     Fechar
@@ -110,7 +124,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     <span class="nav-icone"><i class="fa-solid fa-house"></i></span>
     <span class="nav-label">Início</span>
   </button>
-  <button class="nav-item" onclick="irParaCategorias()">
+  <button class="nav-item" onclick="abrirMenuCategorias()">
     <span class="nav-icone"><i class="fa-solid fa-bars"></i></span>
     <span class="nav-label">Categorias</span>
   </button>
