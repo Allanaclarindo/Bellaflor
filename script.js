@@ -303,4 +303,34 @@ function enviarCarrinhoWhatsApp() {
   );
 }
 
+/* ================= RODAPÉ ================= */
+function toggleAcordeon(id) {
+  document.getElementById(id).classList.toggle("aberto");
+}
+
+const formNewsletter = document.getElementById("form-newsletter");
+if (formNewsletter) {
+  formNewsletter.addEventListener("submit", async function (e) {
+    e.preventDefault();
+    const msg = document.getElementById("newsletter-msg");
+    const dados = new FormData(formNewsletter);
+    msg.innerText = "Enviando...";
+    try {
+      const res = await fetch(formNewsletter.action, {
+        method: "POST",
+        body: dados,
+        headers: { Accept: "application/json" }
+      });
+      if (res.ok) {
+        msg.innerText = "Cadastrado com sucesso! 💜";
+        formNewsletter.reset();
+      } else {
+        msg.innerText = "Ops, algo deu errado. Tente novamente.";
+      }
+    } catch (err) {
+      msg.innerText = "Erro de conexão. Tente novamente.";
+    }
+  });
+}
+
 atualizarCarrinho();
