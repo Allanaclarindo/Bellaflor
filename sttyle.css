@@ -192,3 +192,552 @@ section{
     font-size:13px;
     color:#444;
 }
+
+/* ==========================
+   BELLA FLOR - STYLE.CSS
+   PARTE 2
+========================== */
+
+/* BARRA DE BUSCA */
+
+.busca{
+    display:flex;
+    justify-content:center;
+    margin:20px 0;
+}
+
+.busca input{
+    width:100%;
+    max-width:500px;
+    padding:14px 18px;
+    border:1px solid #E3D9FF;
+    border-radius:30px;
+    font-size:15px;
+    box-shadow:0 3px 10px rgba(0,0,0,.06);
+    outline:none;
+}
+
+.busca input:focus{
+    border-color:#BFA2FF;
+}
+
+/* FILTROS DE CATEGORIA */
+
+.filtros{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+    margin:0 25px 25px;
+}
+
+.filtros button{
+    padding:10px 20px;
+    border:none;
+    border-radius:30px;
+    background:#BFA2FF;
+    color:#fff;
+    font-weight:bold;
+    font-size:14px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.filtros button:hover{
+    background:#7B5CFF;
+}
+
+/* BOTÃO FLUTUANTE DO CARRINHO (topo) */
+
+#carrinho-btn{
+    position:fixed;
+    top:20px;
+    right:20px;
+    background:#6E44FF;
+    color:#fff;
+    width:56px;
+    height:56px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    cursor:pointer;
+    box-shadow:0 4px 14px rgba(0,0,0,.25);
+    z-index:1000;
+    transition:.3s;
+}
+
+#carrinho-btn:hover{
+    background:#5A34D9;
+    transform:scale(1.05);
+}
+
+#contador{
+    position:absolute;
+    top:-4px;
+    right:-4px;
+    background:#FF4D6D;
+    color:#fff;
+    font-size:12px;
+    font-weight:bold;
+    min-width:20px;
+    height:20px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:0 4px;
+}
+
+/* CARRINHO LATERAL */
+
+.carrinho{
+    position:fixed;
+    top:0;
+    right:0;
+    width:340px;
+    max-width:90%;
+    height:100%;
+    background:#fff;
+    box-shadow:-4px 0 20px rgba(0,0,0,.2);
+    padding:25px;
+    overflow-y:auto;
+    transform:translateX(100%);
+    transition:transform .35s ease;
+    z-index:2000;
+}
+
+.carrinho.ativo{
+    transform:translateX(0);
+}
+
+.carrinho h2{
+    color:#6E44FF;
+    margin-bottom:20px;
+}
+
+.item-carrinho{
+    background:#F8F5FF;
+    border-radius:10px;
+    padding:12px;
+    margin-bottom:12px;
+    font-size:14px;
+}
+
+.item-carrinho button{
+    border:none;
+    background:#DCCBFF;
+    color:#333;
+    border-radius:6px;
+    width:28px;
+    height:28px;
+    cursor:pointer;
+    margin:0 4px;
+}
+
+#total{
+    background:#F5F0FF;
+    padding:14px;
+    border-radius:10px;
+    margin:15px 0;
+    font-size:14px;
+    line-height:1.6;
+}
+
+.carrinho > button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    transition:.3s;
+}
+
+.carrinho > button:first-of-type{
+    background:#25D366;
+    color:#fff;
+}
+
+.carrinho > button:first-of-type:hover{
+    background:#1FB458;
+}
+
+.carrinho > button:last-of-type{
+    background:#eee;
+    color:#444;
+}
+
+.carrinho > button:last-of-type:hover{
+    background:#ddd;
+}
+
+/* MODAL DE PRODUTO */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.6);
+    align-items:center;
+    justify-content:center;
+    z-index:3000;
+    padding:20px;
+}
+
+.modal-conteudo{
+    background:#fff;
+    border-radius:16px;
+    padding:25px;
+    max-width:420px;
+    width:100%;
+    max-height:90vh;
+    overflow-y:auto;
+    box-shadow:0 10px 30px rgba(0,0,0,.3);
+}
+
+.modal-conteudo h3{
+    color:#6E44FF;
+    margin-bottom:15px;
+    text-align:center;
+}
+
+.modal-conteudo label{
+    display:block;
+    margin-top:12px;
+    margin-bottom:6px;
+    font-size:13px;
+    color:#6E44FF;
+    font-weight:bold;
+}
+
+.modal-conteudo select{
+    width:100%;
+    padding:10px;
+    border:1px solid #E3D9FF;
+    border-radius:8px;
+    font-size:14px;
+}
+
+.modal-conteudo button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:#BFA2FF;
+    color:#fff;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:15px;
+    transition:.3s;
+}
+
+.modal-conteudo button:hover{
+    background:#A98CF8;
+}
+
+/* BOTÃO FLUTUANTE DO WHATSAPP (rodapé) */
+
+#whatsapp-flutuante{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#25D366;
+    color:#fff;
+    width:56px;
+    height:56px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+    box-shadow:0 4px 14px rgba(0,0,0,.25);
+    z-index:1000;
+    text-decoration:none;
+    transition:.3s;
+}
+
+#whatsapp-flutuante:hover{
+    background:#1FB458;
+    transform:scale(1.08);
+}
+/* ==========================
+   BELLA FLOR - STYLE.CSS
+   PARTE 2
+========================== */
+
+/* BARRA DE BUSCA */
+
+.busca{
+    display:flex;
+    justify-content:center;
+    margin:20px 0;
+}
+
+.busca input{
+    width:100%;
+    max-width:500px;
+    padding:14px 18px;
+    border:1px solid #E3D9FF;
+    border-radius:30px;
+    font-size:15px;
+    box-shadow:0 3px 10px rgba(0,0,0,.06);
+    outline:none;
+}
+
+.busca input:focus{
+    border-color:#BFA2FF;
+}
+
+/* FILTROS DE CATEGORIA */
+
+.filtros{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+    margin:0 25px 25px;
+}
+
+.filtros button{
+    padding:10px 20px;
+    border:none;
+    border-radius:30px;
+    background:#BFA2FF;
+    color:#fff;
+    font-weight:bold;
+    font-size:14px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.filtros button:hover{
+    background:#7B5CFF;
+}
+
+/* BOTÃO FLUTUANTE DO CARRINHO (topo) */
+
+#carrinho-btn{
+    position:fixed;
+    top:20px;
+    right:20px;
+    background:#6E44FF;
+    color:#fff;
+    width:56px;
+    height:56px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    cursor:pointer;
+    box-shadow:0 4px 14px rgba(0,0,0,.25);
+    z-index:1000;
+    transition:.3s;
+}
+
+#carrinho-btn:hover{
+    background:#5A34D9;
+    transform:scale(1.05);
+}
+
+#contador{
+    position:absolute;
+    top:-4px;
+    right:-4px;
+    background:#FF4D6D;
+    color:#fff;
+    font-size:12px;
+    font-weight:bold;
+    min-width:20px;
+    height:20px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:0 4px;
+}
+
+/* CARRINHO LATERAL */
+
+.carrinho{
+    position:fixed;
+    top:0;
+    right:0;
+    width:340px;
+    max-width:90%;
+    height:100%;
+    background:#fff;
+    box-shadow:-4px 0 20px rgba(0,0,0,.2);
+    padding:25px;
+    overflow-y:auto;
+    transform:translateX(100%);
+    transition:transform .35s ease;
+    z-index:2000;
+}
+
+.carrinho.ativo{
+    transform:translateX(0);
+}
+
+.carrinho h2{
+    color:#6E44FF;
+    margin-bottom:20px;
+}
+
+.item-carrinho{
+    background:#F8F5FF;
+    border-radius:10px;
+    padding:12px;
+    margin-bottom:12px;
+    font-size:14px;
+}
+
+.item-carrinho button{
+    border:none;
+    background:#DCCBFF;
+    color:#333;
+    border-radius:6px;
+    width:28px;
+    height:28px;
+    cursor:pointer;
+    margin:0 4px;
+}
+
+#total{
+    background:#F5F0FF;
+    padding:14px;
+    border-radius:10px;
+    margin:15px 0;
+    font-size:14px;
+    line-height:1.6;
+}
+
+.carrinho > button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    transition:.3s;
+}
+
+.carrinho > button:first-of-type{
+    background:#25D366;
+    color:#fff;
+}
+
+.carrinho > button:first-of-type:hover{
+    background:#1FB458;
+}
+
+.carrinho > button:last-of-type{
+    background:#eee;
+    color:#444;
+}
+
+.carrinho > button:last-of-type:hover{
+    background:#ddd;
+}
+
+/* MODAL DE PRODUTO */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.6);
+    align-items:center;
+    justify-content:center;
+    z-index:3000;
+    padding:20px;
+}
+
+.modal-conteudo{
+    background:#fff;
+    border-radius:16px;
+    padding:25px;
+    max-width:420px;
+    width:100%;
+    max-height:90vh;
+    overflow-y:auto;
+    box-shadow:0 10px 30px rgba(0,0,0,.3);
+}
+
+.modal-conteudo h3{
+    color:#6E44FF;
+    margin-bottom:15px;
+    text-align:center;
+}
+
+.modal-conteudo label{
+    display:block;
+    margin-top:12px;
+    margin-bottom:6px;
+    font-size:13px;
+    color:#6E44FF;
+    font-weight:bold;
+}
+
+.modal-conteudo select{
+    width:100%;
+    padding:10px;
+    border:1px solid #E3D9FF;
+    border-radius:8px;
+    font-size:14px;
+}
+
+.modal-conteudo button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:#BFA2FF;
+    color:#fff;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:15px;
+    transition:.3s;
+}
+
+.modal-conteudo button:hover{
+    background:#A98CF8;
+}
+
+/* BOTÃO FLUTUANTE DO WHATSAPP (rodapé) */
+
+#whatsapp-flutuante{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#25D366;
+    color:#fff;
+    width:56px;
+    height:56px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:28px;
+    box-shadow:0 4px 14px rgba(0,0,0,.25);
+    z-index:1000;
+    text-decoration:none;
+    transition:.3s;
+}
+
+#whatsapp-flutuante:hover{
+    background:#1FB458;
+    transform:scale(1.08);
+}
