@@ -71,10 +71,6 @@
     border-radius:50%;
   ">✕</button>
 </div>
-<!-- BOTÃO DO CARRINHO -->
-<div id="carrinho-btn" onclick="abrirCarrinho()">
-  🛒 <span id="contador">0</span>
-</div>
 <!-- CARRINHO -->
 <div id="carrinho-lateral" class="carrinho">
   <h2>🛒 Carrinho</h2>
@@ -108,6 +104,34 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 <a href="https://wa.me/5591985144347" target="_blank" id="whatsapp-flutuante">
   <i class="fa-brands fa-whatsapp"></i>
 </a>
+
+<!-- MENU INFERIOR FIXO -->
+<nav id="nav-inferior">
+  <button class="nav-item" onclick="irParaTopo()">
+    <span class="nav-icone"><i class="fa-solid fa-house"></i></span>
+    <span class="nav-label">Início</span>
+  </button>
+  <button class="nav-item" onclick="irParaCategorias()">
+    <span class="nav-icone"><i class="fa-solid fa-bars"></i></span>
+    <span class="nav-label">Categorias</span>
+  </button>
+  <button class="nav-item" onclick="irParaBusca()">
+    <span class="nav-icone"><i class="fa-solid fa-magnifying-glass"></i></span>
+    <span class="nav-label">Buscar</span>
+  </button>
+  <button class="nav-item" onclick="abrirWhatsappContato()">
+    <span class="nav-icone"><i class="fa-brands fa-whatsapp"></i></span>
+    <span class="nav-label">Contato</span>
+  </button>
+  <button class="nav-item" onclick="abrirCarrinho()">
+    <span class="nav-icone">
+      <i class="fa-solid fa-cart-shopping"></i>
+      <span id="contador">0</span>
+    </span>
+    <span class="nav-label">Carrinho</span>
+  </button>
+</nav>
+
 <script src="script.js"></script>
 </body>
 </html>
