@@ -786,3 +786,54 @@ section{
     justify-content:center;
     padding:0 3px;
 }
+/* MENU DE CATEGORIAS (deslizante) */
+
+.menu-categorias{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:#FDFBFF;
+    z-index:4000;
+    padding:25px;
+    transform:translateX(-100%);
+    transition:transform .3s ease;
+    overflow-y:auto;
+}
+
+.menu-categorias.ativo{
+    transform:translateX(0);
+}
+
+.menu-fechar{
+    background:none;
+    border:none;
+    font-size:26px;
+    color:#7B5CFF;
+    cursor:pointer;
+    margin-bottom:20px;
+}
+
+.menu-lista{
+    list-style:none;
+}
+
+.menu-lista li{
+    border-bottom:1px solid #E3D9FF;
+}
+
+.menu-lista button{
+    width:100%;
+    text-align:left;
+    background:none;
+    border:none;
+    padding:18px 4px;
+    font-size:20px;
+    color:#7B5CFF;
+    cursor:pointer;
+}
+
+.menu-lista button:hover{
+    color:#6E44FF;
+}
