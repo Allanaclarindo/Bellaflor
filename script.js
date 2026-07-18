@@ -3,6 +3,7 @@ let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
 let produtoSelecionado = null;
 let frete = 0;
 let freteCalculado = false;
+let metodoFreteNome = "";
 const lista = document.getElementById("lista-produtos");
 
 /* Tabela de frete aproximada por estado (UF).
@@ -210,19 +211,24 @@ function formatarCep(input) {
   input.value = v;
 }
 
-/* Consulta o CEP na API gratuita ViaCEP e aplica o valor
-   de frete conforme o estado (UF) do endereço encontrado. */
+/* Consulta o CEP na API gratuita ViaCEP e monta as opções de frete
+   (Excursão/Transportadora, Correios PAC e Correios SEDEX).
+   Os valores de PAC e SEDEX são estimados a partir do valor base
+   por região — ajuste os multiplicadores abaixo se quiser. */
 async function calcularFreteCep() {
   const cepInput = document.getElementById("cep");
   const infoBox = document.getElementById("frete-info");
+  const opcoesBox = document.getElementById("opcoes-frete");
   const cep = cepInput.value.replace(/\D/g, "");
 
   if (cep.length !== 8) {
     infoBox.innerText = "CEP inválido. Digite os 8 números.";
+    opcoesBox.innerHTML = "";
     return;
   }
 
   infoBox.innerText = "Calculando frete...";
+  opcoesBox.innerHTML = "";
 
   try {
     const res = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
@@ -233,15 +239,58 @@ async function calcularFreteCep() {
       return;
     }
 
-    const valorFrete = tabelaFrete[dados.uf] || 25;
-    frete = valorFrete;
-    freteCalculado = true;
+    const base = tabelaFrete[dados.uf] || 25;
+    const precoTransportadora = base;
+    const precoPac = Math.round(base * 2 * 100) / 100;
+    const precoSedex = Math.round(base * 3.5 * 100) / 100;
 
-    infoBox.innerText = `Entrega para ${dados.localidade}/${dados.uf}: R$ ${valorFrete.toFixed(2)}`;
+    infoBox.innerText = `Entregas para ${dados.localidade}/${dados.uf}:`;
+
+    opcoesBox.innerHTML = `
+      <label class="opcao-frete">
+        <input type="radio" name="metodo-frete" value="${precoTransportadora}"
+               checked onchange="selecionarFrete(this.value, 'Excursão ou Transportadora')">
+        <span class="opcao-frete-texto">
+          <b>Excursão ou Transportadora</b>
+          <small>Chega em até 3 dias úteis</small>
+        </span>
+        <span class="opcao-frete-preco">R$ ${precoTransportadora.toFixed(2)}</span>
+      </label>
+      <label class="opcao-frete">
+        <input type="radio" name="metodo-frete" value="${precoPac}"
+               onchange="selecionarFrete(this.value, 'Correios PAC')">
+        <span class="opcao-frete-texto">
+          <b>Correios PAC</b>
+          <small>Chega em até 12 dias úteis</small>
+        </span>
+        <span class="opcao-frete-preco">R$ ${precoPac.toFixed(2)}</span>
+      </label>
+      <label class="opcao-frete">
+        <input type="radio" name="metodo-frete" value="${precoSedex}"
+               onchange="selecionarFrete(this.value, 'Correios SEDEX')">
+        <span class="opcao-frete-texto">
+          <b>Correios SEDEX</b>
+          <small>Chega em até 6 dias úteis</small>
+        </span>
+        <span class="opcao-frete-preco">R$ ${precoSedex.toFixed(2)}</span>
+      </label>
+    `;
+
+    frete = precoTransportadora;
+    freteCalculado = true;
+    metodoFreteNome = "Excursão ou Transportadora";
     atualizarCarrinho();
   } catch (e) {
     infoBox.innerText = "Erro ao consultar o CEP. Tente novamente.";
   }
+}
+
+/* Chamada quando o cliente escolhe um método de frete diferente */
+function selecionarFrete(valor, nome) {
+  frete = parseFloat(valor);
+  freteCalculado = true;
+  metodoFreteNome = nome;
+  atualizarCarrinho();
 }
 
 /* ================= ATUALIZAR ================= */
@@ -295,7 +344,7 @@ function enviarCarrinhoWhatsApp() {
   const totalFinal = subtotal + frete;
   const cepDigitado = document.getElementById("cep")?.value || "não informado";
   msg += `📍 CEP: ${cepDigitado}%0A`;
-  msg += `🚚 Frete: R$ ${frete.toFixed(2)}%0A`;
+  msg += `🚚 Frete (${metodoFreteNome || "padrão"}): R$ ${frete.toFixed(2)}%0A`;
   msg += `💰 Total: R$ ${totalFinal.toFixed(2)}`;
   window.open(
     `https://wa.me/5591985144347?text=${msg}`,
