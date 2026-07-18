@@ -37,7 +37,7 @@ function calcularFretePorUF(uf) {
         'PB': 18.00,
         'RN': 18.00,
         'MA': 20.00,
-        'PA': 22.00,
+        'PA': 15.00,
         'AM': 25.00,
         'AC': 28.00,
         'RO': 25.00,
