@@ -194,6 +194,60 @@ section{
     color:#444;
 }
 
+/* OPÇÕES DE FRETE */
+
+#opcoes-frete{
+    margin-top:10px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.opcao-frete{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:#fff;
+    border:1px solid #DCCBFF;
+    border-radius:10px;
+    padding:10px 12px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.opcao-frete:has(input:checked){
+    border-color:#7B5CFF;
+    background:#F8F5FF;
+}
+
+.opcao-frete input[type="radio"]{
+    accent-color:#7B5CFF;
+    width:18px;
+    height:18px;
+    flex-shrink:0;
+}
+
+.opcao-frete-texto{
+    display:flex;
+    flex-direction:column;
+    flex:1;
+    font-size:13px;
+    color:#6E44FF;
+}
+
+.opcao-frete-texto small{
+    color:#9C8CC7;
+    font-size:11px;
+    margin-top:2px;
+}
+
+.opcao-frete-preco{
+    font-size:13px;
+    font-weight:bold;
+    color:#6E44FF;
+    white-space:nowrap;
+}
+
 /* ==========================
    BELLA FLOR - STYLE.CSS
    PARTE 2
