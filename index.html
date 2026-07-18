@@ -21,6 +21,61 @@
 </div>
   <div class="produtos" id="lista-produtos"></div>
 </section>
+
+<!-- RODAPÉ -->
+<footer id="rodape">
+  <div class="rodape-entrega">
+    <i class="fa-solid fa-truck-fast"></i>
+    <h3>Enviamos para todo o Brasil</h3>
+    <p>Envio pelos Correios com código de rastreio</p>
+  </div>
+
+  <div class="rodape-newsletter">
+    <h4>Cadastre-se e receba nossas ofertas</h4>
+    <form id="form-newsletter" action="https://formspree.io/f/SEU_ID_AQUI" method="POST">
+      <input type="email" name="email" placeholder="Seu e-mail" required>
+      <button type="submit"><i class="fa-solid fa-arrow-right"></i></button>
+    </form>
+    <p id="newsletter-msg"></p>
+  </div>
+
+  <div class="rodape-social">
+    <a href="https://instagram.com/minha_bellaflor.store" target="_blank" aria-label="Instagram">
+      <i class="fa-brands fa-instagram"></i>
+    </a>
+  </div>
+
+  <div class="rodape-acordeon">
+    <button class="acordeon-titulo" onclick="toggleAcordeon('categorias-rodape')">
+      Categorias <i class="fa-solid fa-chevron-down"></i>
+    </button>
+    <div id="categorias-rodape" class="acordeon-conteudo">
+      <button onclick="selecionarCategoriaMenu('Vestidos')">Vestidos</button>
+      <button onclick="selecionarCategoriaMenu('Conjuntos')">Conjuntos</button>
+      <button onclick="selecionarCategoriaMenu('Tops')">Tops</button>
+      <button onclick="selecionarCategoriaMenu('Shorts')">Shorts</button>
+      <button onclick="selecionarCategoriaMenu('Blusas')">Blusas</button>
+    </div>
+  </div>
+
+  <div class="rodape-acordeon">
+    <button class="acordeon-titulo" onclick="toggleAcordeon('contato-rodape')">
+      Entre em contato conosco <i class="fa-solid fa-chevron-down"></i>
+    </button>
+    <div id="contato-rodape" class="acordeon-conteudo">
+      <a href="https://wa.me/5591985144347" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+      <a href="https://instagram.com/minha_bellaflor.store" target="_blank"><i class="fa-brands fa-instagram"></i> Instagram</a>
+    </div>
+  </div>
+
+  <div class="rodape-pagamentos">
+    <span>Pix</span>
+    <span><i class="fa-solid fa-money-bill-wave"></i> Dinheiro</span>
+    <span><i class="fa-regular fa-credit-card"></i> Crédito</span>
+    <span><i class="fa-regular fa-credit-card"></i> Débito</span>
+  </div>
+</footer>
+
 <!-- MENU DE CATEGORIAS (deslizante) -->
 <div id="menu-categorias" class="menu-categorias">
   <button class="menu-fechar" onclick="fecharMenuCategorias()">✕</button>
