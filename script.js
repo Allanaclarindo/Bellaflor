@@ -9,12 +9,12 @@ const lista = document.getElementById("lista-produtos");
 /* Tabela de frete aproximada por estado (UF).
    Ajuste os valores livremente conforme sua transportadora. */
 const tabelaFrete = {
-  AC: 35, AL: 30, AP: 35, AM: 35, BA: 25,
-  CE: 30, DF: 20, ES: 18, GO: 20, MA: 30,
-  MT: 25, MS: 22, MG: 18, PA: 20, PB: 28,
-  PR: 15, PE: 28, PI: 30, RJ: 18, RN: 28,
-  RS: 18, RO: 32, RR: 38, SC: 15, SP: 12,
-  SE: 28, TO: 28
+  AC: 18, AL: 15, AP: 18, AM: 18, BA: 13,
+  CE: 15, DF: 10, ES: 9,  GO: 10, MA: 15,
+  MT: 13, MS: 11, MG: 9,  PA: 22, PB: 14,
+  PR: 8,  PE: 14, PI: 15, RJ: 9,  RN: 14,
+  RS: 9,  RO: 16, RR: 19, SC: 8,  SP: 7,
+  SE: 14, TO: 14
 };
 
 /* ================= PRODUTOS ================= */
@@ -239,9 +239,9 @@ async function calcularFreteCep() {
       return;
     }
 
-    const base = tabelaFrete[dados.uf] || 25;
+    const base = tabelaFrete[dados.uf] || 15;
     const precoTransportadora = base;
-    const precoPac = Math.round(base * 1.4 * 100) / 100;
+    const precoPac = Math.round(base * 2.0 * 100) / 100;
     const precoSedex = Math.round(base * 2.2 * 100) / 100;
 
     infoBox.innerText = `Entregas para ${dados.localidade}/${dados.uf}:`;
@@ -252,6 +252,7 @@ async function calcularFreteCep() {
                checked onchange="selecionarFrete(this.value, 'Excursão ou Transportadora')">
         <span class="opcao-frete-texto">
           <b>Excursão ou Transportadora</b>
+          <small>Taxa para o motoboy entregar no local de recebimento</small>
           <small>Chega em até 3 dias úteis</small>
         </span>
         <span class="opcao-frete-preco">R$ ${precoTransportadora.toFixed(2)}</span>
