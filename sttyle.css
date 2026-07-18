@@ -1,6 +1,8 @@
-/* ==========================================
-   CONFIGURAÇÕES GERAIS e RESET
-========================================== */
+/* ==========================
+   BELLA FLOR - STYLE.CSS
+   PARTE 1
+========================== */
+
 *{
     margin:0;
     padding:0;
@@ -14,12 +16,34 @@ body{
 }
 
 /* HEADER */
+
 header{
+    position:relative;
     background:linear-gradient(135deg,#DCCBFF,#BFA2FF);
     color:#fff;
     text-align:center;
-    padding:25px;
+    padding:50px 25px;
     box-shadow:0 2px 10px rgba(0,0,0,.15);
+    overflow:hidden;
+}
+
+/* Padrão floral decorativo no fundo do header.
+   Para trocar por uma foto real, basta substituir a linha
+   background-image abaixo por: url("imagens/fundo-header.jpg")
+   e remover o background-repeat/background-size se for uma foto única. */
+header::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxNjAnIGhlaWdodD0nMTYwJz4KPGcgb3BhY2l0eT0nMC40NScgZmlsbD0nI2ZmZmZmZic+CiAgPGNpcmNsZSBjeD0nMjAnIGN5PScyMCcgcj0nNycvPgogIDxjaXJjbGUgY3g9JzM0JyBjeT0nMjAnIHI9JzcnLz4KICA8Y2lyY2xlIGN4PScyNycgY3k9JzgnIHI9JzcnLz4KICA8Y2lyY2xlIGN4PScyNycgY3k9JzMyJyByPSc3Jy8+CiAgPGNpcmNsZSBjeD0nMjcnIGN5PScyMCcgcj0nNScgZmlsbD0nI0ZGRTlBOCcvPgogIDxjaXJjbGUgY3g9JzExMCcgY3k9JzkwJyByPSc3Jy8+CiAgPGNpcmNsZSBjeD0nMTI0JyBjeT0nOTAnIHI9JzcnLz4KICA8Y2lyY2xlIGN4PScxMTcnIGN5PSc3OCcgcj0nNycvPgogIDxjaXJjbGUgY3g9JzExNycgY3k9JzEwMicgcj0nNycvPgogIDxjaXJjbGUgY3g9JzExNycgY3k9JzkwJyByPSc1JyBmaWxsPScjRkZFOUE4Jy8+CiAgPGNpcmNsZSBjeD0nNzAnIGN5PScxMzAnIHI9JzUnLz4KICA8Y2lyY2xlIGN4PSc4MCcgY3k9JzEzMCcgcj0nNScvPgogIDxjaXJjbGUgY3g9Jzc1JyBjeT0nMTIxJyByPSc1Jy8+CiAgPGNpcmNsZSBjeD0nNzUnIGN5PScxMzknIHI9JzUnLz4KICA8Y2lyY2xlIGN4PSc3NScgY3k9JzEzMCcgcj0nMycgZmlsbD0nI0ZGRTlBOCcvPgo8L2c+Cjwvc3ZnPgo=");
+    background-repeat:repeat;
+    background-size:160px 160px;
+    pointer-events:none;
+}
+
+header h1, header p{
+    position:relative;
+    z-index:1;
 }
 
 header h1{
@@ -32,53 +56,10 @@ header p{
     font-size:17px;
 }
 
-/* BUSCA E FILTROS */
-.busca-filtros {
-    padding: 25px 25px 5px 25px;
-}
+/* CATÁLOGO */
 
-.busca {
-    text-align:center;
-    margin-bottom: 20px;
-}
-
-.busca input {
-    padding: 12px;
-    width: 100%;
-    max-width: 400px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    outline: none;
-    font-size: 15px;
-}
-
-.filtros {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 15px;
-}
-
-.filtros button {
-    padding: 8px 18px;
-    border: none;
-    background: #BFA2FF;
-    color: white;
-    border-radius: 20px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: .3s;
-    font-size: 14px;
-}
-
-.filtros button:hover {
-    background: #A98CF8;
-}
-
-/* SEÇÃO CATÁLOGO E GRID */
-#produtos {
-    padding: 20px;
+section{
+    padding:25px;
 }
 
 #produtos h2{
@@ -88,28 +69,27 @@ header p{
     font-size:30px;
 }
 
+/* GRID */
+
 .produtos{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
     gap:25px;
 }
 
-/* CARD DO PRODUTO */
+/* CARD */
+
 .produto{
     background:#fff;
     border-radius:18px;
     overflow:hidden;
-    box-shadow:0 5px 18px rgba(0,0,0,.08);
+    box-shadow:0 5px 18px rgba(0,0,0,.12);
     transition:.3s;
     padding:15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative;
 }
 
 .produto:hover{
-    transform:translateY(-5px);
+    transform:translateY(-6px);
 }
 
 .produto img{
@@ -123,47 +103,18 @@ header p{
 .produto h3{
     margin-top:15px;
     color:#6E44FF;
-    font-size:18px;
+    font-size:20px;
 }
 
 .produto p{
-    margin:10px 0;
+    margin:12px 0;
     color:#D4AF37;
-    font-size:22px;
+    font-size:24px;
     font-weight:bold;
 }
 
-/* BOTÃO DE FAVORITOS (CORAÇÃO) */
-.btn-favorito {
-    position: absolute;
-    top: 25px;
-    right: 25px;
-    background: rgba(255, 255, 255, 0.85);
-    border: none;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-    color: #aaa;
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
-    transition: 0.3s ease;
-    z-index: 5;
-}
+/* BOTÕES */
 
-.btn-favorito:hover {
-    transform: scale(1.1);
-    background: #fff;
-}
-
-.btn-favorito.favoritado {
-    color: #ff4d4d;
-}
-
-/* BOTÕES DO PRODUTO */
 .produto button{
     width:100%;
     padding:12px;
@@ -194,328 +145,50 @@ header p{
     background:#1FB458;
 }
 
-/* ==========================================
-   CARRINHO LATERAL (Menu Deslizante)
-========================================== */
-.carrinho {
-    position: fixed;
-    top: 0;
-    right: -340px; 
-    width: 320px;
-    height: 100%;
-    background: white;
-    box-shadow: -5px 0 15px rgba(0,0,0,0.15);
-    transition: right 0.3s ease;
-    z-index: 10000;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
+/* FRETE POR CEP */
+
+.frete-cep{
+    margin:15px 0;
+    padding:12px;
+    background:#F5F0FF;
+    border-radius:10px;
 }
 
-.carrinho.ativo {
-    right: 0;
+.frete-cep label{
+    display:block;
+    font-size:13px;
+    color:#6E44FF;
+    font-weight:bold;
+    margin-bottom:6px;
 }
 
-.carrinho-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 10px;
+.frete-cep input{
+    width:100%;
+    padding:10px;
+    border:1px solid #DCCBFF;
+    border-radius:8px;
+    font-size:14px;
+    margin-bottom:8px;
 }
 
-#itens-carrinho {
-    flex: 1;
-    overflow-y: auto;
-    margin-bottom: 15px;
+.frete-cep button{
+    width:100%;
+    padding:10px;
+    border:none;
+    border-radius:8px;
+    background:#BFA2FF;
+    color:#fff;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
 }
 
-.item-carrinho {
-    background: #f9f9f9;
-    padding: 10px;
-    border-radius: 8px;
-    margin-bottom: 10px;
-    border-left: 4px solid #7B5CFF;
+.frete-cep button:hover{
+    background:#A98CF8;
 }
 
-#total {
-    font-size: 16px;
-    line-height: 1.5;
-    background: #f5f5f5;
-    padding: 12px;
-    border-radius: 8px;
-    margin-bottom: 15px;
-}
-
-.btn-finalizar {
-    background: #25D366;
-    color: white;
-    border: none;
-    width: 100%;
-    padding: 14px;
-    font-weight: bold;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 15px;
-    margin-bottom: 10px;
-}
-
-.btn-fechar {
-    background: #ff4d4d;
-    color: white;
-    border: none;
-    padding: 6px 12px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-/* ==========================================
-   MODAL DE DETALHES (DESIGN MODERNO)
-========================================== */
-.modal {
-    display: none; 
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.6);
-    z-index: 10050;
-    align-items: center;
-    justify-content: center;
-    padding: 15px;
-}
-
-.modal-content {
-    background: white;
-    padding: 20px;
-    border-radius: 16px;
-    width: 100%;
-    max-width: 420px;
-    position: relative;
-    max-height: 90vh;
-    overflow-y: auto;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-}
-
-.fechar-modal {
-    position: absolute;
-    top: 12px;
-    right: 18px;
-    font-size: 28px;
-    cursor: pointer;
-    color: #999;
-    font-weight: bold;
-    transition: 0.2s;
-}
-
-.fechar-modal:hover {
-    color: #ff4d4d;
-}
-
-#modal-nome {
-    font-size: 22px;
-    color: #333;
-    margin-bottom: 15px;
-    padding-right: 25px;
-    font-weight: bold;
-}
-
-#modal-imagens img#img-principal {
-    width: 100%;
-    height: 320px;
-    object-fit: cover;
-    border-radius: 12px;
-    margin-bottom: 15px;
-}
-
-#modal-imagens label {
-    display: block;
-    font-weight: bold;
-    margin-top: 12px;
-    margin-bottom: 5px;
-    color: #555;
-    font-size: 14px;
-}
-
-#modal-imagens select {
-    width: 100%;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    background: #f9f9f9;
-    font-size: 15px;
-    color: #444;
-    outline: none;
-    margin-bottom: 5px;
-}
-
-#modal-imagens button {
-    width: 100%;
-    background: #D4AF37;
-    color: white;
-    border: none;
-    padding: 14px;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 10px;
-    cursor: pointer;
-    margin-top: 20px;
-    transition: 0.3s;
-}
-
-#modal-imagens button:hover {
-    background: #bfa030;
-}
-
-.modal-btn-fechar-baixo {
-    width: 100%;
-    background: #e0e0e0 !important;
-    color: #555 !important;
-    margin-top: 10px !important;
-    padding: 10px !important;
-    font-size: 14px !important;
-}
-
-.miniaturas-container {
-    display: flex;
-    gap: 8px;
-    margin-top: 12px;
-    flex-wrap: wrap;
-}
-
-.miniaturas-container img {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    cursor: pointer;
-    border-radius: 6px;
-    border: 2px solid transparent;
-    transition: 0.2s;
-}
-
-.miniaturas-container img:hover {
-    border-color: #BFA2FF;
-}
-
-/* ==========================================
-   CARRINHO FIXO NO TOPO DA TELA
-========================================== */
-.icone-carrinho-topo {
-    position: fixed;
-    top: 20px;          
-    right: 20px;         
-    width: 55px;
-    height: 55px;
-    border-radius: 50%;
-    background: #7B5CFF;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    color: white;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-    z-index: 9999;      
-    transition: transform 0.2s ease;
-}
-
-.icone-carrinho-topo:hover {
-    transform: scale(1.08);
-}
-
-#contador {
-    position: absolute;
-    top: -2px;
-    right: -2px;
-    background: #FF3B30;
-    color: white;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    font-size: 11px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-}
-
-/* ==========================================
-   WHATSAPP FIXO NO RODAPÉ DA TELA
-========================================== */
-.icone-whatsapp-fixo {
-    position: fixed;
-    bottom: 25px;       
-    right: 25px;        
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: #25D366;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-    color: white;
-    cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    z-index: 9999;
-    text-decoration: none;
-    transition: transform 0.2s ease;
-}
-
-.icone-whatsapp-fixo:hover {
-    transform: scale(1.08);
-}
-
-/* ==========================================
-   FRETE POR CEP
-========================================== */
-.frete-area {
-    max-width: 1200px;
-    margin: 10px auto 20px;
-    padding: 10px 25px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    font-size: 14px;
-    color: #888;
-    border-top: 1px solid #f0ebff;
-    border-bottom: 1px solid #f0ebff;
-    background: #faf8ff;
-}
-
-.frete-area input {
-    padding: 8px 14px;
-    border: 2px solid #eee;
-    border-radius: 8px;
-    font-size: 14px;
-    outline: none;
-    width: 160px;
-    transition: 0.3s;
-}
-
-.frete-area input:focus {
-    border-color: #BFA2FF;
-}
-
-.frete-area button {
-    padding: 8px 20px;
-    background: #7B5CFF;
-    color: #fff;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 14px;
-    transition: 0.3s;
-}
-
-.frete-area button:hover {
-    background: #6a4ae0;
-}
-
-#frete-info {
-    font-size: 14px;
-    color: #555;
+.frete-cep #frete-info{
+    margin-top:8px;
+    font-size:13px;
+    color:#444;
 }
