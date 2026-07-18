@@ -174,9 +174,6 @@ function fecharCarrinho() {
 function irParaTopo() {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
-function irParaCategorias() {
-  document.querySelector(".filtros").scrollIntoView({ behavior: "smooth", block: "start" });
-}
 function irParaBusca() {
   const campo = document.getElementById("buscar");
   campo.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -184,6 +181,19 @@ function irParaBusca() {
 }
 function abrirWhatsappContato() {
   window.open("https://wa.me/5591985144347", "_blank");
+}
+
+/* ================= MENU DE CATEGORIAS ================= */
+function abrirMenuCategorias() {
+  document.getElementById("menu-categorias").classList.add("ativo");
+}
+function fecharMenuCategorias() {
+  document.getElementById("menu-categorias").classList.remove("ativo");
+}
+function selecionarCategoriaMenu(categoria) {
+  filtrarCategoria(categoria);
+  fecharMenuCategorias();
+  document.getElementById("produtos").scrollIntoView({ behavior: "smooth" });
 }
 
 /* ================= FRETE ================= */
