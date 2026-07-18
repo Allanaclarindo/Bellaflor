@@ -11,7 +11,7 @@ const lista = document.getElementById("lista-produtos");
 const tabelaFrete = {
   AC: 35, AL: 30, AP: 35, AM: 35, BA: 25,
   CE: 30, DF: 20, ES: 18, GO: 20, MA: 30,
-  MT: 25, MS: 22, MG: 18, PA: 22, PB: 28,
+  MT: 25, MS: 22, MG: 18, PA: 20, PB: 28,
   PR: 15, PE: 28, PI: 30, RJ: 18, RN: 28,
   RS: 18, RO: 32, RR: 38, SC: 15, SP: 12,
   SE: 28, TO: 28
