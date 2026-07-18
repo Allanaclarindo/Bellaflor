@@ -1,10 +1,20 @@
 let produtos = [];
 let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
-let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
 let produtoSelecionado = null;
 let frete = 0;
-let usuarioUF = '';
+let freteCalculado = false;
 const lista = document.getElementById("lista-produtos");
+
+/* Tabela de frete aproximada por estado (UF).
+   Ajuste os valores livremente conforme sua transportadora. */
+const tabelaFrete = {
+  AC: 35, AL: 30, AP: 35, AM: 35, BA: 25,
+  CE: 30, DF: 20, ES: 18, GO: 20, MA: 30,
+  MT: 25, MS: 22, MG: 18, PA: 32, PB: 28,
+  PR: 15, PE: 28, PI: 30, RJ: 18, RN: 28,
+  RS: 18, RO: 32, RR: 38, SC: 15, SP: 12,
+  SE: 28, TO: 28
+};
 
 /* ================= PRODUTOS ================= */
 fetch("produtos.json")
@@ -15,18 +25,20 @@ fetch("produtos.json")
     atualizarCarrinho();
   });
 
-function renderizarProdutos() {
-  if (!lista) return;
+function renderizarProdutos(dados) {
+  const itens = dados || produtos;
   lista.innerHTML = "";
-  produtos.forEach((p, index) => {
+
+  if (itens.length === 0) {
+    lista.innerHTML = "<p style='text-align:center;width:100%;'>Nenhum produto encontrado.</p>";
+    return;
+  }
+
+  itens.forEach(p => {
+    const index = produtos.indexOf(p); // índice real no array original
     const img = p.imagens || [p.imagem];
-    const isFavorito = favoritos.some(f => f.nome === p.nome && f.valor === p.valor);
-    
     lista.innerHTML += `
       <div class="produto">
-        <button class="btn-favorito ${isFavorito ? 'favoritado' : ''}" onclick="event.stopPropagation(); toggleFavorito(${index})">
-          ${isFavorito ? '❤️' : '🤍'}
-        </button>
         <img src="${img[0]}" onclick="abrirModal(${index})">
         <h3>${p.nome}</h3>
         <p>${p.preco}</p>
@@ -37,12 +49,37 @@ function renderizarProdutos() {
   });
 }
 
-/* ================= MODAL DE SELEÇÃO ================= */
+/* ================= FILTRO POR CATEGORIA ================= */
+function filtrarCategoria(categoria) {
+  if (categoria === "Todos") {
+    renderizarProdutos(produtos);
+    return;
+  }
+  const filtrados = produtos.filter(p =>
+    p.categoria && p.categoria.trim().toLowerCase() === categoria.trim().toLowerCase()
+  );
+  renderizarProdutos(filtrados);
+}
+
+/* ================= BUSCA ================= */
+function buscarProdutos() {
+  const termo = document.getElementById("buscar").value.trim().toLowerCase();
+  if (termo === "") {
+    renderizarProdutos(produtos);
+    return;
+  }
+  const filtrados = produtos.filter(p =>
+    p.nome.toLowerCase().includes(termo) ||
+    (p.categoria && p.categoria.toLowerCase().includes(termo))
+  );
+  renderizarProdutos(filtrados);
+}
+
+/* ================= MODAL ================= */
 function abrirModal(index) {
   produtoSelecionado = produtos[index];
   document.getElementById("modal").style.display = "flex";
   document.getElementById("modal-nome").innerText = produtoSelecionado.nome;
-  
   const imagens = produtoSelecionado.imagens || [produtoSelecionado.imagem];
   const cores = produtoSelecionado.cores
     ? produtoSelecionado.cores.split(",").map(c => c.trim())
@@ -50,36 +87,33 @@ function abrirModal(index) {
   const tamanhos = produtoSelecionado.tamanhos
     ? produtoSelecionado.tamanhos.split(",").map(t => t.trim())
     : ["Único"];
-
   document.getElementById("modal-imagens").innerHTML = `
-    <img id="img-principal" src="${imagens[0]}">
-    
+    <img id="img-principal"
+         src="${imagens[0]}"
+         style="width:100%; border-radius:10px;">
     <label>Cor</label>
     <select id="cor">
       ${cores.map(c => `<option value="${c}">${c}</option>`).join("")}
     </select>
-    
     <label>Tamanho</label>
     <select id="tamanho">
       ${tamanhos.map(t => `<option value="${t}">${t}</option>`).join("")}
     </select>
-    
-    <button onclick="adicionarDoModal()">Adicionar ao carrinho</button>
-    <button onclick="fecharModal()" class="modal-btn-fechar-baixo">Fechar</button>
-    
-    <div class="miniaturas-container">
+    <button onclick="adicionarDoModal()">
+      Adicionar ao carrinho
+    </button>
+    <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap;">
       ${imagens.map(img => `
-        <img src="${img}" onclick="trocarImagem('${img}')">
+        <img src="${img}"
+             onclick="trocarImagem('${img}')"
+             style="width:60px;height:60px;object-fit:cover;cursor:pointer;border-radius:8px;">
       `).join("")}
     </div>
   `;
 }
-
 function trocarImagem(src) {
-  const imgPrincipal = document.getElementById("img-principal");
-  if (imgPrincipal) imgPrincipal.src = src;
+  document.getElementById("img-principal").src = src;
 }
-
 function fecharModal() {
   document.getElementById("modal").style.display = "none";
 }
@@ -96,7 +130,6 @@ function adicionarAoCarrinho(index) {
   });
   atualizarCarrinho();
 }
-
 function adicionarDoModal() {
   const cor = document.getElementById("cor").value;
   const tamanho = document.getElementById("tamanho").value;
@@ -111,11 +144,11 @@ function adicionarDoModal() {
   fecharModal();
 }
 
+/* ================= CONTROLES ================= */
 function aumentar(i) {
   carrinho[i].quantidade++;
   atualizarCarrinho();
 }
-
 function diminuir(i) {
   if (carrinho[i].quantidade > 1) {
     carrinho[i].quantidade--;
@@ -124,32 +157,72 @@ function diminuir(i) {
   }
   atualizarCarrinho();
 }
-
 function remover(i) {
   carrinho.splice(i, 1);
   atualizarCarrinho();
 }
 
+/* ================= CARRINHO (abrir/fechar) ================= */
 function abrirCarrinho() {
   document.getElementById("carrinho-lateral").classList.add("ativo");
 }
-
 function fecharCarrinho() {
   document.getElementById("carrinho-lateral").classList.remove("ativo");
 }
 
+/* ================= FRETE ================= */
 function calcularFrete() {
-  if (frete === undefined || frete === null) {
-    frete = 0;
+  if (!freteCalculado) {
+    frete = 10.00; // valor padrão até o cliente informar o CEP
   }
 }
 
+/* Formata o CEP como 00000-000 enquanto o usuário digita */
+function formatarCep(input) {
+  let v = input.value.replace(/\D/g, "").slice(0, 8);
+  if (v.length > 5) v = v.slice(0, 5) + "-" + v.slice(5);
+  input.value = v;
+}
+
+/* Consulta o CEP na API gratuita ViaCEP e aplica o valor
+   de frete conforme o estado (UF) do endereço encontrado. */
+async function calcularFreteCep() {
+  const cepInput = document.getElementById("cep");
+  const infoBox = document.getElementById("frete-info");
+  const cep = cepInput.value.replace(/\D/g, "");
+
+  if (cep.length !== 8) {
+    infoBox.innerText = "CEP inválido. Digite os 8 números.";
+    return;
+  }
+
+  infoBox.innerText = "Calculando frete...";
+
+  try {
+    const res = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+    const dados = await res.json();
+
+    if (dados.erro) {
+      infoBox.innerText = "CEP não encontrado.";
+      return;
+    }
+
+    const valorFrete = tabelaFrete[dados.uf] || 25;
+    frete = valorFrete;
+    freteCalculado = true;
+
+    infoBox.innerText = `Entrega para ${dados.localidade}/${dados.uf}: R$ ${valorFrete.toFixed(2)}`;
+    atualizarCarrinho();
+  } catch (e) {
+    infoBox.innerText = "Erro ao consultar o CEP. Tente novamente.";
+  }
+}
+
+/* ================= ATUALIZAR ================= */
 function atualizarCarrinho() {
   const box = document.getElementById("itens-carrinho");
-  if (!box) return;
   box.innerHTML = "";
   let subtotal = 0;
-  
   carrinho.forEach((item, i) => {
     subtotal += item.preco * item.quantidade;
     box.innerHTML += `
@@ -165,32 +238,25 @@ function atualizarCarrinho() {
       </div>
     `;
   });
-  
   calcularFrete();
   const totalFinal = subtotal + frete;
-  
-  const totalElem = document.getElementById("total");
-  if (totalElem) {
-    totalElem.innerHTML = `
-      <b>Subtotal:</b> R$ ${subtotal.toFixed(2)}<br>
-      <b>Frete:</b> R$ ${frete.toFixed(2)}<br>
-      <b>Total:</b> R$ ${totalFinal.toFixed(2)}
-    `;
-  }
-  
-  const contadorElem = document.getElementById("contador");
-  if (contadorElem) contadorElem.innerText = carrinho.length;
-  
+  document.getElementById("total").innerHTML = `
+    <b>Subtotal:</b> R$ ${subtotal.toFixed(2)}<br>
+    <b>Frete:</b> R$ ${frete.toFixed(2)}<br>
+    <b>Total:</b> R$ ${totalFinal.toFixed(2)}
+  `;
+  document.getElementById("contador").innerText = carrinho.length;
   localStorage.setItem("carrinho", JSON.stringify(carrinho));
 }
 
+/* ================= WHATSAPP ================= */
 function enviarCarrinhoWhatsApp() {
   if (carrinho.length === 0) {
     alert("Seu carrinho está vazio.");
     return;
   }
   let subtotal = 0;
-  let msg = "🛍️ *PEDIDO BELLA FLOR*%0A%0A";
+  let msg = "🛍 *PEDIDO BELLA FLOR*%0A%0A";
   carrinho.forEach(item => {
     subtotal += item.preco * item.quantidade;
     msg += `• ${item.nome}%0A`;
@@ -201,96 +267,14 @@ function enviarCarrinhoWhatsApp() {
   });
   calcularFrete();
   const totalFinal = subtotal + frete;
+  const cepDigitado = document.getElementById("cep")?.value || "não informado";
+  msg += `📍 CEP: ${cepDigitado}%0A`;
   msg += `🚚 Frete: R$ ${frete.toFixed(2)}%0A`;
   msg += `💰 Total: R$ ${totalFinal.toFixed(2)}`;
-  
-  if (usuarioUF) {
-    msg += `%0A📍 UF: ${usuarioUF}`;
-  }
-  
-  window.open(`https://wa.me/5591985144347?text=${msg}`, "_blank");
+  window.open(
+    `https://wa.me/5591985144347?text=${msg}`,
+    "_blank"
+  );
 }
 
-function buscarProdutos(){
-  const texto = document.getElementById("buscar").value.toLowerCase();
-  const cards = document.querySelectorAll(".produto");
-  cards.forEach(card=>{
-    const nome = card.querySelector("h3").innerText.toLowerCase();
-    if(nome.includes(texto)){
-      card.style.display="flex";
-    }else{
-      card.style.display="none";
-    }
-  });
-}
-
-function filtrarCategoria(categoria){
-    if(categoria==="Todos"){
-        renderizarProdutos();
-        return;
-    }
-    lista.innerHTML="";
-    produtos
-    .filter(p=>p.categoria===categoria)
-    .forEach((p,index)=>{
-        let img=p.imagens || [p.imagem];
-        const isFavorito = favoritos.some(f => f.nome === p.nome && f.valor === p.valor);
-        const originalIndex = produtos.indexOf(p);
-        lista.innerHTML+=`
-        <div class="produto">
-            <button class="btn-favorito ${isFavorito ? 'favoritado' : ''}" onclick="event.stopPropagation(); toggleFavorito(${originalIndex})">
-                ${isFavorito ? '❤️' : '🤍'}
-            </button>
-            <img src="${img[0]}" onclick="abrirModal(${originalIndex})">
-            <h3>${p.nome}</h3>
-            <p>${p.preco}</p>
-            <button onclick="abrirModal(${originalIndex})">Comprar</button>
-            <button onclick="adicionarAoCarrinho(${originalIndex})">Adicionar</button>
-        </div>
-        `;
-    });
-}
-
-/* ================= FAVORITOS ================= */
-function toggleFavorito(index) {
-  const produto = produtos[index];
-  const existente = favoritos.findIndex(f => f.nome === produto.nome && f.valor === produto.valor);
-  
-  if (existente >= 0) {
-    favoritos.splice(existente, 1);
-  } else {
-    favoritos.push({
-      nome: produto.nome,
-      valor: produto.valor,
-      preco: produto.preco,
-      imagem: produto.imagem || (produto.imagens && produto.imagens[0])
-    });
-  }
-  
-  localStorage.setItem("favoritos", JSON.stringify(favoritos));
-  renderizarProdutos();
-}
-
-/* ================= FRETE POR CEP ================= */
-async function calcularFretePorCEP() {
-  const cepInput = document.getElementById("cep-frete");
-  const cepDigitado = cepInput.value.replace(/\D/g, '');
-  
-  if (cepDigitado.length !== 8) {
-    alert("Digite um CEP válido com 8 números.");
-    return;
-  }
-
-  try {
-    const dados = await consultarCEP(cepDigitado);
-    usuarioUF = dados.uf;
-    frete = calcularFretePorUF(usuarioUF);
-    
-    document.getElementById("frete-info").innerHTML = `✅ ${dados.localidade}/${dados.uf}: R$ ${frete.toFixed(2)}`;
-    atualizarCarrinho();
-  } catch (erro) {
-    alert(erro.message);
-    frete = 0;
-    document.getElementById("frete-info").innerHTML = "❌ CEP não encontrado";
-  }
-}
+atualizarCarrinho();
