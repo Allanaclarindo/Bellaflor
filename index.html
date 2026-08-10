@@ -7,8 +7,14 @@
 </head>
 <body>
 <header>
-  <h1>Bella Flor</h1>
-  <p>Moda Feminina</p>
+  <div class="carousel-container">
+    <div class="carousel-track" id="carouselTrack">
+      <img src="imagens/banner1.jpg" class="carousel-img" alt="Banner 1">
+      <img src="imagens/banner2.jpg" class="carousel-img" alt="Banner 2">
+      <img src="imagens/banner3.jpg" class="carousel-img" alt="Banner 3">
+    </div>
+    <div class="carousel-dots" id="carouselDots"></div>
+  </div>
 </header>
 <section id="produtos">
   <h2>Catálogo</h2>
@@ -187,5 +193,41 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 </nav>
 
 <script src="script.js"></script>
-</body>
+.carousel-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+}
+.carousel-track {
+  display: flex;
+  transition: transform 0.6s ease-in-out;
+}
+.carousel-img {
+  width: 100%;
+  flex-shrink: 0;
+  object-fit: cover;
+  height: 260px;
+}
+.carousel-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+}
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.6);
+  cursor: pointer;
+}
+.dot.active {
+  background: #fff;
+  width: 20px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}</body>
 </html>
