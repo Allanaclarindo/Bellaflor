@@ -778,9 +778,9 @@ section{
 .carousel-img {
   width: 100%;
   flex-shrink: 0;
-  object-fit: cover;
+  object-fit: contain;
   height: 400px;
-   object-position: top;
+   backgroud: #ede4fa;
 }
 .carousel-dots {
   position: absolute;
