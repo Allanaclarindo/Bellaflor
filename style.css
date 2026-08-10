@@ -765,3 +765,40 @@ section{
     color:#6E44FF;
     font-weight:bold;
 }
+.carousel-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+}
+.carousel-track {
+  display: flex;
+  transition: transform 0.6s ease-in-out;
+}
+.carousel-img {
+  width: 100%;
+  flex-shrink: 0;
+  object-fit: cover;
+  height: 260px;
+}
+.carousel-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+}
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.6);
+  cursor: pointer;
+}
+.dot.active {
+  background: #fff;
+  width: 20px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
