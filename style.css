@@ -802,3 +802,14 @@ section{
   border-radius: 4px;
   transition: all 0.3s ease;
 }
+.banner-grid {
+  display: flex;
+  width: 100%;
+}
+
+.banner-img {
+  width: 33.333%;
+  height: 320px;
+  object-fit: cover;
+  object-position: top;
+}
