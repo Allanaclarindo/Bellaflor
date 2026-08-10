@@ -779,7 +779,8 @@ section{
   width: 100%;
   flex-shrink: 0;
   object-fit: cover;
-  height: 260px;
+  height: 400px;
+   object-position: top;
 }
 .carousel-dots {
   position: absolute;
