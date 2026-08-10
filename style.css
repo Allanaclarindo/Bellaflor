@@ -778,7 +778,7 @@ section{
 .carousel-img {
   width: 100%;
   flex-shrink: 0;
-  height: 500px;
+  height: 420px;
    backgroud: #ede4fa;
 }
 .carousel-dots {
