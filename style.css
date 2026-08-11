@@ -32,7 +32,7 @@ header{
    Para trocar por uma foto real, basta substituir a linha
    background-image abaixo por: url("imagens/fundo-header.jpg")
    e remover o background-repeat/background-size se for uma foto única. */
-header::before{
+.banner-titulo::before{
     content:"";
     position:absolute;
     inset:0;
