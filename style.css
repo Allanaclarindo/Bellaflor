@@ -813,3 +813,18 @@ section{
   object-fit: cover;
   object-position: top;
 }
+.banner-titulo {
+  text-align: center;
+  padding: 16px 0;
+}
+
+.banner-titulo h1 {
+  color: #6b46c1;
+  font-size: 28px;
+  margin: 0;
+}
+
+.banner-titulo p {
+  color: #6b46c1;
+  margin: 4px 0 0;
+}
