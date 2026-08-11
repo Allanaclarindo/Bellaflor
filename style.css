@@ -28,19 +28,6 @@ header{
     overflow:hidden;
 }
 
-/* Padrão floral decorativo no fundo do header.
-   Para trocar por uma foto real, basta substituir a linha
-   background-image abaixo por: url("imagens/fundo-header.jpg")
-   e remover o background-repeat/background-size se for uma foto única. */
-.banner-titulo::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxNjAnIGhlaWdodD0nMTYwJz4KPGcgb3BhY2l0eT0nMC40NScgZmlsbD0nI2ZmZmZmZic+CiAgPGNpcmNsZSBjeD0nMjAnIGN5PScyMCcgcj0nNycvPgogIDxjaXJjbGUgY3g9JzM0JyBjeT0nMjAnIHI9JzcnLz4KICA8Y2lyY2xlIGN4PScyNycgY3k9JzgnIHI9JzcnLz4KICA8Y2lyY2xlIGN4PScyNycgY3k9JzMyJyByPSc3Jy8+CiAgPGNpcmNsZSBjeD0nMjcnIGN5PScyMCcgcj0nNScgZmlsbD0nI0ZGRTlBOCcvPgogIDxjaXJjbGUgY3g9JzExMCcgY3k9JzkwJyByPSc3Jy8+CiAgPGNpcmNsZSBjeD0nMTI0JyBjeT0nOTAnIHI9JzcnLz4KICA8Y2lyY2xlIGN4PScxMTcnIGN5PSc3OCcgcj0nNycvPgogIDxjaXJjbGUgY3g9JzExNycgY3k9JzEwMicgcj0nNycvPgogIDxjaXJjbGUgY3g9JzExNycgY3k9JzkwJyByPSc1JyBmaWxsPScjRkZFOUE4Jy8+CiAgPGNpcmNsZSBjeD0nNzAnIGN5PScxMzAnIHI9JzUnLz4KICA8Y2lyY2xlIGN4PSc4MCcgY3k9JzEzMCcgcj0nNScvPgogIDxjaXJjbGUgY3g9Jzc1JyBjeT0nMTIxJyByPSc1Jy8+CiAgPGNpcmNsZSBjeD0nNzUnIGN5PScxMzknIHI9JzUnLz4KICA8Y2lyY2xlIGN4PSc3NScgY3k9JzEzMCcgcj0nMycgZmlsbD0nI0ZGRTlBOCcvPgo8L2c+Cjwvc3ZnPgo=");
-    background-repeat:repeat;
-    background-size:160px 160px;
-    pointer-events:none;
-}
 
 header h1, header p{
     position:relative;
